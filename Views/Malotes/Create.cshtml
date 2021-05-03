@@ -1,0 +1,180 @@
+﻿@model SicWEB.Models.Malote
+
+@{
+  ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid border rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <h5 class="font-weight-bold pt-3 pb-1">Cadastro de Malote</h5>
+
+    <hr />
+    <form asp-action="Create">
+      <input type="hidden" asp-for="NomeUser" value="@ViewBag.NomeUser" />
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <label asp-for="Status" class="control-label"></label>
+          <select asp-for="Status" class="browser-default custom-select" required>
+            <option></option>
+            <option value="Aprovado">Aprovado</option>
+            <option value="Atrasado">Atrasado</option>
+            <option value="Cadastrado">Cadastrado</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Recebido">Recebido</option>
+          </select>
+          <small class="form-text text-muted">Status do Malote</small>
+          <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="DataEnvio" class="control-label"></label>
+          <input asp-for="DataEnvio" class="form-control" id="dataenvio" readonly />
+          <span asp-validation-for="DataEnvio" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="Cidade" class="control-label"></label>
+          <select asp-for="Cidade" class="browser-default custom-select" id="selectcity" required>
+            <option></option>
+            <option value="Curitiba">Curitiba</option>
+            <option value="Maringa">Maringa</option>
+            <option value="São Paulo">São Paulo</option>
+          </select>
+          <small class="form-text text-muted">Cidade de Destino</small>
+          <span asp-validation-for="Cidade" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="Numero" class="control-label"></label>
+          <input asp-for="Numero" class="form-control" type="text" onkeypress='validate(event)'/>
+          <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="Percurso" class="control-label"></label>
+          <input asp-for="Percurso" class="form-control" id="idpercurso" readonly />
+          <span asp-validation-for="Percurso" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="Lacre" class="control-label"></label>
+          <input asp-for="Lacre" class="form-control" type="text" onkeypress='validate(event)'/>
+          <span asp-validation-for="Lacre" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group col-md-3">
+          <label asp-for="Remetente" class="control-label"></label>
+          <input asp-for="Remetente" class="form-control" value="@ViewBag.NomeUser" readonly />
+          <span asp-validation-for="Remetente" class="text-danger"></span>
+        </div>
+
+        <input asp-for="Atualizacao" class="form-control" value="@ViewBag.NomeUser" type="hidden" />
+        <input asp-for="DataRecebido" class="form-control" id="datarecebido" type="hidden" />
+        <input asp-for="CidadeSaida" class="form-control" value="@ViewBag.CidadeUser" type="hidden" />
+
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-sm btn-redondo btn-dark-green">Cadastrar</button> |
+        <a class="btn btn-sm btn-redondo btn-outline-elegant" asp-action="Index"><i class="fas fa-undo-alt"></i> Voltar para a Lista</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@section Scripts {
+
+  <script>
+    $("#selectcity").change(function () {
+      var valor = $(this).val();
+      if (valor == "Curitiba") {
+        $('#idpercurso').val("10415932")
+      }
+      if (valor == "Maringa") {
+        $('#idpercurso').val("10415932")
+      }
+      if (valor == "São Paulo") {
+        $('#idpercurso').val("310941")
+      }
+      if (valor == 4) {
+        $('#idpercurso').val("310941")
+      }
+    });
+  </script>
+
+  <script>
+    $("#selectcity").change(function () {
+      var valor = $(this).val();
+      if (valor == "Curitiba") {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        $('#datarecebido').val(date.toISOString().substr(0, 10))
+      }
+      if (valor == "Maringa") {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        $('#datarecebido').val(date.toISOString().substr(0, 10))
+      }
+      if (valor == "São Paulo") {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        $('#datarecebido').val(date.toISOString().substr(0, 10))
+      }
+    });
+  </script>
+
+  <script>
+    $('#datahora').val(moment().format('LL'))
+  </script>
+
+  <script>
+    $('#dataenvio').val(moment().format('L'))
+  </script>
+
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      $("#telefone").mask("(99) 99999-9999");     // Máscara para TELEFONE
+      $("#cep").mask("99999-999");    // Máscara para CEP
+      $("#data").mask("99/99/9999");    // Máscara para DATA
+      $("#cnpj").mask("99.999.999/9999-99");    // Máscara para CNPJ
+      $('#rg').mask('99.999.999-9');    // Máscara para RG<br/>
+      $('#agencia').mask('9999-9');    // Máscara para AGÊNCIA BANCÁRIA
+      $('#conta').mask('99.999-9');    // Máscara para CONTA BANCÁRIA
+    });
+  </script>
+
+  <script>
+    function checking(argument) {
+      // body...
+      var x = document.getElementById("input").value
+      alert(x);
+    }
+  </script>
+
+  <script>
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      // Handle paste
+      if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+      } else {
+        // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+      }
+      var regex = /[0-9]|\./;
+      if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+  </script>
+
+}

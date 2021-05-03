@@ -1,0 +1,155 @@
+﻿@model SicWEB.Models.Malote
+
+@{
+  ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid border rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <h5 class="font-weight-bold pt-3 pb-1">Cadastro de Malote</h5>
+
+    <hr />
+    <form asp-action="Edit">
+      <div class="form-row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="col-md-3 mb-3">
+          <label asp-for="Status">Status do Envio</label>
+          <select class="browser-default custom-select" asp-for="Status" id="selectstatus" required>
+            <option></option>
+            <option value="Aprovado">Aprovado</option>
+            <option value="Atrasado">Atrasado</option>
+            <option value="Cadastrado">Cadastrado</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Recebido">Recebido</option>
+          </select>
+          <div class="invalid-feedback">
+            Por favor, escolha uma opção válida!.
+          </div>
+          <div class="valid-feedback">
+            Tudo certo neste campo.
+          </div>
+          <small class="text-muted">Selecione o tipo de envio do Correio</small>
+        </div>
+
+        <div>
+          <hr />
+          <dl class="row">
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.DataEnvio)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.DataEnvio)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Numero)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Percurso)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Percurso)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Lacre)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Lacre)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Cidade)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Cidade)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Remetente)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Remetente)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Atualizacao)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Atualizacao)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.CidadeSaida)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.CidadeSaida)
+            </dd>
+
+            @if (Model.Status == "Recebido")
+            {
+              <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataRecebido)
+              </dt>
+            }
+
+            @if (Model.Status == "Recebido")
+            {
+              <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataRecebido)
+              </dd>
+            }
+
+          </dl>
+        </div>
+
+      </div>
+      <input asp-for="Numero" class="form-control" type="hidden" />
+      <input asp-for="Percurso" class="form-control" type="hidden" />
+      <input asp-for="Lacre" class="form-control" type="hidden" />
+      <input asp-for="Cidade" class="form-control" type="hidden" />
+      <input asp-for="Remetente" class="form-control" type="hidden" />
+      <input asp-for="Atualizacao" class="form-control" type="hidden" />
+      <input asp-for="DataRecebido" class="form-control" type="hidden" id="datarecebido" />
+      <input asp-for="DataEnvio" class="form-control" type="hidden" />
+      <input asp-for="CidadeSaida" class="form-control" type="hidden" />
+      <input asp-for="NomeUser" class="form-control" type="hidden" />
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-sm btn-redondo btn-dark-green">Salvar</button> |
+        <a class="btn btn-sm btn-redondo btn-outline-elegant" asp-action="Index"><i class="fas fa-undo-alt"></i> Voltar para a Lista</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+@section Scripts {
+  <script>
+    $("#selectstatus").change(function () {
+      var valor = $(this).val();
+      if (valor == "Recebido") {
+        var date = new Date();
+        $('#datarecebido').val(date.toISOString().substr(0, 10))
+      }
+      if (valor == "Maringa") {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        $('#datarecebido').val(date.toISOString().substr(0, 10))
+      }
+      if (valor == "São Paulo") {
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        $('#datarecebido').val(date.toISOString().substr(0, 10))
+      }
+    });
+  </script>
+}

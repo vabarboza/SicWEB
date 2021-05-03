@@ -1,0 +1,159 @@
+.form-elegant .font-small {
+  font-size: 0.8rem;
+}
+
+.form-elegant .z-depth-1a {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+}
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+}
+
+.bg-danger-dark {
+  background-color: #7B0C08 !important;
+}
+
+.bg-azul {
+  background-color: #0F7EF8 !important;
+}
+
+.bg-verde {
+  background-color: #0DD960 !important;
+}
+
+.bg-roxo {
+  background-color: #9613E8 !important;
+}
+
+.bg-laranja {
+  background-color: #D98A0D !important;
+}
+
+.bg-branco {
+  background-color: white !important;
+}
+
+.bg-bege {
+  background-color: #E68A55 !important;
+}
+
+.filter-white {
+  filter: invert(99%) sepia(93%) saturate(5%) hue-rotate(258deg) brightness(107%) contrast(100%);
+}
+
+.custom-file-input:lang(pt) ~ .custom-file-label::after {
+  content: "Selecionar"
+}
+
+
+body {
+  /* The image used */
+  background-image: url("../img/background.jpg");
+  /* Center and scale the image nicely */
+  font-size: 14px;
+}
+
+.mtn {
+  margin-top: -3%;
+}
+
+.btn-redondo {
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+
+.invisivel {
+  display: none;
+}
+
+.md-v-line {
+  position: absolute;
+  border-left: 1px solid rgba(0,0,0,.125);
+  height: 50px;
+  top: 0px;
+  left: 54px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(13deg, #7b0c08 14%,#7b0c08 64%);
+  border-radius: 0px;
+}
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: radial-gradient(circle, #7b0c08 14%,#7b0c08 64%);
+  }
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 0px;
+  box-shadow: inset 7px 10px 12px #ffffff;
+}
+
+.streak.streak-photo {
+  background-attachment: fixed;
+}
+/*
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+*/
+
+
+
+.dropdown-submenu {
+  position: relative;
+}
+
+  .dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: 1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+  }
+
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+  }
+
+  .dropdown-submenu:hover > a:after {
+    border-left-color: #fff;
+  }
+
+  .dropdown-submenu.pull-left {
+    float: none;
+  }
+
+    .dropdown-submenu.pull-left > .dropdown-menu {
+      left: 100%;
+      margin-left: 10px;
+      -webkit-border-radius: 6px 0 6px 6px;
+      -moz-border-radius: 6px 0 6px 6px;
+      border-radius: 6px 0 6px 6px;
+    }

@@ -1,0 +1,246 @@
+﻿@model IEnumerable<SicWEB.Models.Malote>
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <h5 class="font-weight-bold pt-3 pb-1">Cadastro de Malotes</h5>
+
+    <hr />
+
+    <p>
+      <a asp-action="Create" class="btn btn-dark-green btn-sm btn-redondo">Novo Malote</a>
+    </p>
+
+    <div class="pb-3">
+      <h6 class="font-weight-bolder"> Colunas:</h6>
+      <a class="badge badge-primary toggle-vis text-white" data-column="1">Data</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="2">Status</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="3">Numero</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="4">Percurso</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="5">Lacre</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="6">Cidade</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="7">Remetente</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="8">Atualização</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="9">Data Recebimento</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="10">Cidade Origem</a>
+    </div>
+
+    @if (TempData["mensagemCreate"] != null)
+    {
+      <script type="text/javascript">
+        window.onload = function () {
+          toastr.success('Malote cadastrado com sucesso!!!', 'Sucesso !!!', {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "md-toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 500,
+            "timeOut": 3000,
+            "extendedTimeOut": 500,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          })
+        };
+      </script>
+    }
+
+    @if (TempData["mensagemDelete"] != null)
+    {
+      <script type="text/javascript">
+        window.onload = function () {
+          toastr.error('Malote excluído com sucesso!!!', 'Sucesso !!!', {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "md-toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 500,
+            "timeOut": 3000,
+            "extendedTimeOut": 500,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          })
+        };
+      </script>
+    }
+
+    @if (TempData["mensagemEdit"] != null)
+    {
+      <script type="text/javascript">
+        window.onload = function () {
+          toastr.info('Malote editado com sucesso!!!', 'Sucesso !!!', {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "md-toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 500,
+            "timeOut": 3000,
+            "extendedTimeOut": 500,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          })
+        };
+      </script>
+    }
+
+    <table id="example" class="table table-hover compact font-weight-light small " style="width:100%">
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.DataEnvio)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Status)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Numero)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Percurso)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Lacre)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Remetente)
+          </th>
+
+          <th>
+            @Html.DisplayNameFor(model => model.Atualizacao)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.DataRecebido)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CidadeSaida)
+          </th>
+          <th>
+            Ações
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr>
+            <td>
+              @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.DataEnvio)
+            </td>
+            <td>
+              @if (item.DataRecebido < DateTime.Today && item.Status != "Recebido")
+              {
+                <span class="font-weight-bold text-danger">
+                  <i class="fas fa-exclamation-triangle animated pulse infinite slow fa-xs"></i> Atrasado
+                </span>
+              }
+              else
+              {
+                @Html.DisplayFor(modelItem => item.Status)
+              }
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Percurso)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Lacre)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Remetente)
+            </td>
+
+            <td>
+              @Html.DisplayFor(modelItem => item.Atualizacao)
+            </td>
+
+            <td>
+              @Html.DisplayFor(modelItem => item.DataRecebido)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.CidadeSaida)
+            </td>
+            <td>
+              <a id="badge" class="badge badge-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen-square fa-lg p-2"></i></a>
+              <a class="badge badge-success" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-list-ul fa-lg p-2"></i></a>
+              <a class="badge badge-dark" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt fa-lg p-2"></i></a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <br />
+    <p>
+      <a asp-area="" asp-controller="Malotes" asp-action="GerarRelatorio" class="btn btn-dark-green btn-sm btn-redondo">
+        Gerar Protocolo
+      </a>
+    </p>
+  </div>
+</div>
+
+@section Scripts {
+
+  <script>
+    $(document).ready(function () {
+      var table = $('#example').DataTable({
+        "scrollX": true,
+        "paging": true,
+        "order": [[0, "desc"]],
+        "language": {
+          "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        }
+      });
+      table.columns([0, 7, 8, 9, 10]).visible(false, false);
+      $('a.toggle-vis').on('click', function (e) {
+        e.preventDefault();
+
+        // Get the column API object
+        var column = table.column($(this).attr('data-column'));
+
+        // Toggle the visibility
+        column.visible(!column.visible());
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+}

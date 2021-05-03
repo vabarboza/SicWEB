@@ -1,0 +1,206 @@
+﻿@model SicWEB.Models.InformarEndereco
+
+@{
+  ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid border rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <h5 class="font-weight-bold pt-3 pb-1">Cadastro de Notificação</h5>
+
+    <hr />
+
+    <form asp-action="Create">
+
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <input type="hidden" asp-for="NomeUser" value="@ViewBag.NomeUser" />
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <label asp-for="Autos" class="control-label font-weight-bolder"></label>
+          <input asp-for="Autos" onkeypress='validate(event)' class="form-control" />
+          <small class="form-text text-muted">Favor informar N° dos autos.</small>
+          <span asp-validation-for="Autos" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label asp-for="Contrato" class="control-label font-weight-bolder"></label>
+          <input asp-for="Contrato" onkeypress='validate(event)' type="text" class="form-control" />
+          <small class="form-text text-muted">Favor informar N° do contrato.</small>
+          <span asp-validation-for="Contrato" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label asp-for="Comarca" class="control-label font-weight-bolder"></label>
+          <input asp-for="Comarca" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
+          <small class="form-text text-muted">Favor informar a comarca.</small>
+          <span asp-validation-for="Comarca" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-1">
+          <label asp-for="Estado" class="control-label font-weight-bolder"></label>
+          <select asp-for="Estado" class="browser-default custom-select">
+            <option></option>
+            <option value="ACRE">AC</option>
+            <option value="ALAGOAS">AL</option>
+            <option value="AMAPÁ">AP</option>
+            <option value="AMAZONAS">AM</option>
+            <option value="BAHIA">BA</option>
+            <option value="CEARÁ">CE</option>
+            <option value="DISTRITO FEDERAL">DF</option>
+            <option value="ESPÍRITO SANTO">ES</option>
+            <option value="GOIÁS">GO</option>
+            <option value="MARANHÃO">MA</option>
+            <option value="MATO GROSSO">MT</option>
+            <option value="MATO GROSSO DO SUL">MS</option>
+            <option value="MINAS GERAIS">MG</option>
+            <option value="PARÁ">PA</option>
+            <option value="PARAÍBA">PB</option>
+            <option value="PARANÁ">PR</option>
+            <option value="PERNAMBUCO">PE</option>
+            <option value="PIAUÍ">PI</option>
+            <option value="RIO DE JANEIRO">RJ</option>
+            <option value="RIO GRANDE DO SUL">RS</option>
+            <option value="RIO GRANDE DO NORTE">RN</option>
+            <option value="RONDÔNIA">RS</option>
+            <option value="RORAIMA">RR</option>
+            <option value="SANTA CATARINA">SC</option>
+            <option value="SÃO PAULO">SP</option>
+            <option value="SERGIPE">SE</option>
+            <option value="TOCANTINS">TO</option>
+          </select>
+          <small class="form-text text-muted">Estado.</small>
+          <span asp-validation-for="Estado" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label asp-for="Vara" class="control-label font-weight-bolder"></label>
+          <input asp-for="Vara" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
+          <small class="form-text text-muted">Favor informar a vara.</small>
+          <span asp-validation-for="Vara" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label asp-for="Banco" class="control-label font-weight-bolder"></label>
+          <input asp-for="Banco" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
+          <small class="form-text text-muted">Favor informar o banco do contrato.</small>
+          <span asp-validation-for="Banco" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label asp-for="Reu" class="control-label font-weight-bolder"></label>
+          <input asp-for="Reu" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
+          <small class="form-text text-muted">Favor informar nome do réu.</small>
+          <span asp-validation-for="Reu" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label asp-for="Endereco" class="control-label font-weight-bolder"></label>
+          <input asp-for="Endereco" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
+          <small class="form-text text-muted">Favor informar endereço do réu.</small>
+          <span asp-validation-for="Endereco" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="Oab" class="control-label font-weight-bolder"></label>
+          <select asp-for="Oab" class="browser-default custom-select" id="exampleFormControlSelect1">
+            <option></option>
+            <option value="OAB/AC 3.557">Acre</option>
+            <option value="OAB/AL 9.957-A">Alagoas</option>
+            <option value="OAB/AP 1.765-A">Amapá</option>
+            <option value="OAB/AM A-751">Amazonas</option>
+            <option value="OAB/BA 25.579">Bahia</option>
+            <option value="OAB/CE 23.649-A">Ceará</option>
+            <option value="OAB/DF 34.239">Distrito Federal</option>
+            <option value="OAB/ES 16.288">Espírito Santo</option>
+            <option value="OAB/GO 30.436">Goiás</option>
+            <option value="OAB/MA 8.784-A">Maranhão</option>
+            <option value="OAB/MT 11.877-A">Mato Grosso</option>
+            <option value="OAB/MS 11.654-A">Mato Grosso do Sul</option>
+            <option value="OAB/MG 111.753">Minas Gerais</option>
+            <option value="OAB/PA 13.846-A">Pará</option>
+            <option value="OAB/PB 19.937-A">Paraíba</option>
+            <option value="OAB/PR 19.937">Paraná</option>
+            <option value="OAB/PE 1.161-A">Pernambuco</option>
+            <option value="OAB/PI 7.006-A">Piauí</option>
+            <option value="OAB/RJ 151.486">Rio de Janeiro</option>
+            <option value="OAB/RS 57.289-A">Rio Grande do Sul</option>
+            <option value="OAB/RN 812-A">Rio Grande do Norte</option>
+            <option value="OAB/RR 375-A">Rondônia</option>
+            <option value="OAB/RR 375-A">Roraima</option>
+            <option value="OAB/SC 18.728-A">Santa Catarina</option>
+            <option value="OAB/SP 278.281">São Paulo</option>
+            <option value="OAB/SE 623-A">Sergipe</option>
+            <option value="OAB/TO 4.258">Tocantins</option>
+          </select>
+          <small class="form-text text-muted">Favor selecionar a O.A.B.</small>
+          <span asp-validation-for="Oab" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label asp-for="Data" class="control-label font-weight-bolder"></label>
+          <input asp-for="Data" class="form-control" id="datahora" readonly />
+          <small class="form-text text-muted">Data atual do cadastro.</small>
+          <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-sm btn-redondo btn-dark-green">Cadastrar</button> |
+        <a class="btn btn-sm btn-redondo btn-outline-elegant" asp-action="Index"><i class="fas fa-undo-alt"></i> Voltar para a Lista</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+@section Scripts {
+
+  <script>
+    $('#datahora').val(moment().format('LL'))
+  </script>
+
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      $("#telefone").mask("(99) 99999-9999");     // Máscara para TELEFONE
+      $("#cep").mask("99999-999");    // Máscara para CEP
+      $("#data").mask("99/99/9999");    // Máscara para DATA
+      $("#cnpj").mask("99.999.999/9999-99");    // Máscara para CNPJ
+      $('#rg').mask('99.999.999-9');    // Máscara para RG<br/>
+      $('#agencia').mask('9999-9');    // Máscara para AGÊNCIA BANCÁRIA
+      $('#conta').mask('99.999-9');    // Máscara para CONTA BANCÁRIA
+    });
+  </script>
+
+  <script>
+    function checking(argument) {
+      // body...
+      var x = document.getElementById("input").value
+      alert(x);
+    }
+  </script>
+
+  <script>
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      // Handle paste
+      if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+      } else {
+        // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+      }
+      var regex = /[0-9]|\./;
+      if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+  </script>
+
+}

@@ -1,0 +1,229 @@
+﻿@model IEnumerable<SicWEB.Models.InformarEndereco>
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <h5 class="font-weight-bold pt-3 pb-1">Cadastro de Notificação</h5>
+
+    <hr />
+
+    <p>
+      <a asp-action="Create" class="btn btn-dark-green btn-sm btn-redondo">Nova Notificação</a>
+    </p>
+
+    <div class="pb-3">
+      <h6 class="font-weight-bolder"> Colunas:</h6>
+      <a class="badge badge-primary toggle-vis text-white" data-column="1">Autos</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="2">Contrato</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="3">Vara</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="4">Comarca</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="5">Estado</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="6">Banco</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="7">Réu</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="8">Endereço</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="9">O.A.B</a>
+      <a class="badge badge-primary toggle-vis text-white" data-column="10">Data</a>
+    </div>
+
+    <table id="example" class="table hover" style="width:100%">
+      <thead>
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.Id)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Autos)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Contrato)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Vara)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Comarca)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Estado)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Banco)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Reu)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Oab)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Data)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.NomeUser)
+          </th>
+          <th>
+            Ação
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr>
+            <td>
+              @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Autos)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Contrato)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Vara)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Comarca)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Banco)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Reu)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Oab)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.NomeUser)
+            </td>
+            <td>
+              <a id="badge" class="badge badge-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen-square fa-lg p-2"></i></a>
+              <a class="badge badge-success" asp-controller="InformarEndereco" asp-action="GerarRelatorio" asp-route-id="@item.Id"><i class="fas fa-file-alt fa-lg p-2"></i></a>
+              <a class="badge badge-dark" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt fa-lg p-2"></i></a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (TempData["mensagemCreate"] != null)
+{
+  <script type="text/javascript">
+    window.onload = function () {
+      toastr.success('Carta cadastrada com sucesso!!!', 'Sucesso !!!', {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "md-toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": 300,
+        "hideDuration": 500,
+        "timeOut": 3000,
+        "extendedTimeOut": 500,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      })
+    };
+  </script>
+}
+
+@if (TempData["mensagemDelete"] != null)
+{
+  <script type="text/javascript">
+    window.onload = function () {
+      toastr.success('Carta excluída com sucesso!!!', 'Sucesso !!!', {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "md-toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": 300,
+        "hideDuration": 500,
+        "timeOut": 3000,
+        "extendedTimeOut": 500,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      })
+    };
+  </script>
+}
+
+@if (TempData["mensagemEdit"] != null)
+{
+  <script type="text/javascript">
+    window.onload = function () {
+      toastr.success('Carta editada com sucesso!!!', 'Sucesso !!!', {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "md-toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": 300,
+        "hideDuration": 500,
+        "timeOut": 3000,
+        "extendedTimeOut": 500,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      })
+    };
+  </script>
+}
+
+
+@section Scripts {
+
+  <script>
+    $(document).ready(function () {
+      var table = $('#example').DataTable({
+        "scrollX": true,
+        "paging": true,
+        "order": [[0, "desc"]],
+        "language": {
+          "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        }
+      });
+      table.columns([0, 3, 6, 7, 8, 9, 11]).visible(false, false);
+      $('a.toggle-vis').on('click', function (e) {
+        e.preventDefault();
+
+        // Get the column API object
+        var column = table.column($(this).attr('data-column'));
+
+        // Toggle the visibility
+        column.visible(!column.visible());
+      });
+    });
+  </script>
+}

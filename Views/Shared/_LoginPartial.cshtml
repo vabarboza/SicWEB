@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (TempData["mensagemOk"] != null)
+{
+  <script type="text/javascript">
+    window.onload = function () {
+      toastr.success('Bem vindo ao sistema, @ViewBag.NomeUser', 'Login efetuado com sucesso!', {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "md-toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": 300,
+        "hideDuration": 500,
+        "timeOut": 3000,
+        "extendedTimeOut": 500,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }),
+        $('#ModalWarning').modal('show')
+    };
+  </script>
+}
+
+<ul class="navbar-nav ml-auto nav-flex-icons">
+  @if (SignInManager.IsSignedIn(User))
+  {
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user"></i> @ViewBag.NomeUser
+      </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-dark"
+           aria-labelledby="navbarDropdownMenuLink-333">
+        <a class="dropdown-item " asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+          <i class="far fa-user-circle"></i> Meu Perfil
+        </a>
+      </div>
+    </li>
+
+    <li class="nav-item mt-n2 mb-n3">
+      <form asp-area="Identity" asp-page="/Account/Logout"
+            asp-route-returnUrl="@Url.Page("/", new { area = "" })"
+            method="post">
+        <button type="submit" class="nav-link btn btn-link"><i class="fas fa-sign-out-alt"></i> Sair</button>
+      </form>
+    </li>
+  }
+
+  else
+  {
+  }
+</ul>
+
+
+<!-- Central Modal Warning Demo-->
+<div class="modal fade left" id="ModalWarning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning modal-dialog-centered" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header font-weight-bold">
+        <p class="heading black-text">Atenção </p> <i class="fas fa-exclamation-triangle"></i>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="black-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3 text-center">
+            <img src="~/img/admin.png" alt="IMG of Avatars"
+                 class="img-fluid z-depth-1-half rounded-circle">
+            <div style="height: 10px"></div>
+            <p class="title mb-0">Administrador</p>
+          </div>
+
+          <div class="col-9">
+            <p class="card-text">
+              <strong class="red-text">
+                Para melhor utilização do sistema e seus recursos, é recomendado
+                a utilização do navegador Google Chrome ou Microsoft Edge.
+              </strong>
+              </p>
+            <p class="card-text">
+              <strong>
+                Este sistema está em fase de desenvolvimento, algumas funções, dados e
+                ferramentas podem apresentar alguma instabilidade.
+              </strong>
+            </p>
+            <p class="card-text">
+              <strong>
+                Alguns dados salvos podem ser perdidos após alguma atualização, porem dados críticos serão preservados.
+              </strong>
+            </p>
+            <p class="card-text">
+              <strong>
+                Qualquer duvida entrar em contato com o suporte, obrigado.
+              </strong>
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Central Modal Warning Demo-->

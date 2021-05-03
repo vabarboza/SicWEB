@@ -1,0 +1,326 @@
+﻿@{
+  ViewData["Title"] = "Pagina Inicial";
+}
+
+<div class="container-fluid rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <div class="row">
+      <div class="col-md-3">
+
+        <div class="row">
+          <div class="col mb-3 mt-3">
+            <!-- Card -->
+            <div class="card stylish-color white-text shadow-none">
+              <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="h2-responsive font-weight-bold mt-n2 mb-0">
+                    @if (@ViewBag.TotalMalote == null)
+                    {
+                      <span>0</span>
+                    }
+                    else
+                    {
+                      @ViewBag.TotalMalote
+                    }
+                  </p>
+                  <p class="mb-0">Malotes Cadastrados</p>
+                </div>
+                <div>
+                  <img src="~/img/svg/briefcase.svg" class="filter-white" height="45" />
+                </div>
+              </div>
+              <a asp-area="" asp-controller="Malotes" asp-action="Index" class="card-footer footer-hover small text-center white-text border-0 p-2">
+                Mais Informações<i class="fas fa-arrow-circle-right pl-2"></i>
+              </a>
+            </div>
+            <!-- Card -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col mb-3">
+            <!-- Card -->
+            <div class="card stylish-color white-text shadow-none">
+              <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="h2-responsive font-weight-bold mt-n2 mb-0">
+                    @if (@ViewBag.TotalCorreio == null)
+                    {
+                      <span>0</span>
+                    }
+                    else
+                    {
+                      @ViewBag.TotalCorreio
+                    }
+                  </p>
+                  <p class="mb-0">Correios Cadastrados</p>
+                </div>
+                <div>
+                  <img src="~/img/svg/cartas.svg" class="filter-white" height="45" />
+                </div>
+              </div>
+              <a asp-area="" asp-controller="Correios" asp-action="Index" class="card-footer footer-hover small text-center white-text border-0 p-2">
+                Mais Informações<i class="fas fa-arrow-circle-right pl-2"></i>
+              </a>
+            </div>
+            <!-- Card -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col mb-4">
+            <!-- Card -->
+            <div class="card stylish-color white-text shadow-none">
+              <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="h2-responsive font-weight-bold mt-n2 mb-0">@ViewBag.ContarNotificacao</p>
+                  <p class="mb-0">Notificações Cadastradas</p>
+                </div>
+                <div>
+                  <img src="~/img/svg/trocar-e-mails.svg" class="filter-white" height="45" />
+                </div>
+              </div>
+              <a class="card-footer footer-hover small text-center white-text border-0 p-2">
+                Mais Informações<i class="fas fa-arrow-circle-right pl-2"></i>
+              </a>
+            </div>
+            <!-- Card -->
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col mt-3">
+
+        <div class="row">
+          <div class="col mb-3">
+
+            <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+              <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                  <div class="card border-stylish-color" style="height: 414px;">
+                    <div class="card-header text-white stylish-color">Grafico de Correios</div>
+                    <div class="card-body align-middle">
+                      <canvas id="chartCorreio" style="max-width: 100%; max-height: 330px"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="carousel-item">
+                  <div class="card border-stylish-color" style="height: 414px;">
+                    <div class="card-header text-white stylish-color">Grafico de Malotes</div>
+                    <div class="card-body align-middle">
+                      <canvas id="chartMalote" style="max-width: 100%; max-height: 330px"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                <!--
+                <div class="carousel-item">
+                <div class="card border-stylish-color" style="height: 414px;">
+                <div class="card-header text-white stylish-color">Grafico de Notificações</div>
+                <div class="card-body align-middle">
+                <canvas id="chartNot" style="max-width: 100%; max-height: 330px"></canvas>
+                </div>
+                </div>
+                </div>
+                -->
+
+                <div class="carousel-item">
+                  <div class="card border-stylish-color" style="height: 414px;">
+                    <div class="card-header text-white stylish-color">Grafico de Notificações</div>
+                    <div class="card-body align-middle">
+                      <canvas id="horizontalBar" style="max-width: auto; max-height: 330px"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+
+  <script>
+      var ctx = document.getElementById('chartCorreio').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Azul', 'AR', 'Cartas', 'Sedex'],
+          datasets: [{
+            label: 'Numero de Envios',
+            data: [@ViewBag.TotalAzul, @ViewBag.TotalAR, @ViewBag.TotalCarta, @ViewBag.TotalSedex],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          interval: 300,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+  </script>
+
+  <script>
+      var ctx = document.getElementById('chartMalote').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Curitiba', 'Maringa', 'São Paulo'],
+          datasets: [{
+            label: 'Numero de Envios',
+            data: [@ViewBag.TotalCuritiba, @ViewBag.TotalMaringa, @ViewBag.TotalSP],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          interval: 300,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+  </script>
+
+
+  <script>
+      var ctx = document.getElementById('chartNot').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Citação Carta', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço', 'Informar Órgão', 'Juntada de Termo'],
+          datasets: [{
+            label: 'Numero de Envios',
+            data: [@ViewBag.ContarCitacaocarta, @ViewBag.ContarExpedicaoMandado,
+                  @ViewBag.ContarFielDepositario, @ViewBag.ContarInformarEndereco,
+                  @ViewBag.ContarInformarOrgao, @ViewBag.ContarNotificacaoJuntadaTermoCessao],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          interval: 300,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+  </script>
+
+  <script>
+    //pie
+    new Chart(document.getElementById("horizontalBar"), {
+      "type": "horizontalBar",
+      "data": {
+        "labels": ['Citação Carta', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço', 'Informar Órgão', 'Juntada de Termo'],
+        "datasets": [{
+          "label": "Envios",
+          "data": [@ViewBag.ContarCitacaocarta, @ViewBag.ContarExpedicaoMandado,
+                  @ViewBag.ContarFielDepositario, @ViewBag.ContarInformarEndereco,
+                  @ViewBag.ContarInformarOrgao, @ViewBag.ContarNotificacaoJuntadaTermoCessao],
+          "fill": false,
+          "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+            "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
+            "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
+          ],
+          "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+            "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"
+          ],
+          "borderWidth": 1
+        }]
+      },
+      "options": {
+        "scales": {
+          "xAxes": [{
+            "ticks": {
+              "beginAtZero": true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+
+
+}
+

@@ -1,0 +1,187 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - SicWEB</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="~/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="~/css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="~/css/style.css">
+  <!-- Stepper CSS - minified-->
+  <link href="~/css/addons-pro/steppers.min.css" rel="stylesheet">
+  <!-- DataTables CSS - minified-->
+  <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- MDBootstrap Cards Extended Pro  -->
+  <link href="~/css/addons-pro/cards-extended.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    @if (SignInManager.IsSignedIn(User))
+    {
+      <!--Navbar -->
+      <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-danger-dark">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+          <img src="~/img/topo.png" style="width: 40px" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-truck"></i> Correios
+              </a>
+              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" asp-area="" asp-controller="Correios" asp-action="Index">
+                  <i class="fas fa-plus-circle"></i>&nbsp; Cadastro de Encomendas
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="Malotes" asp-action="Index">
+                  <i class="fas fa-plus-circle"></i>&nbsp; Cadastro de Malotes
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-highlighter"></i> Materiais
+              </a>
+              <div class="dropdown-menu dropdown-dark " aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item">
+                  <i class="fas fa-plus-circle"></i>&nbsp; Solicitação de Materiais
+                </a>
+                <a class="dropdown-item">
+                  <i class="fas fa-list-ul"></i> Listagens de Solicitações
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-external-link-square-alt"></i> Externos
+              </a>
+              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item">
+                  <i class="fas fa-external-link-alt"></i> Rastreio Azul
+                </a>
+                <a class="dropdown-item">
+                  <i class="fas fa-external-link-alt"></i> Rastreio Correios
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-chart-line"></i> Gráficos
+              </a>
+              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item">
+                  <i class="far fa-chart-bar"></i> Gráfico de Correios
+                </a>
+                <a class="dropdown-item">
+                  <i class="far fa-chart-bar"></i> Gráfico de Malotes
+                </a>
+                <a class="dropdown-item">
+                  <i class="far fa-chart-bar"></i> Gráfico de Materiais
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-file-signature"></i> Notificações
+              </a>
+              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink" id="notificacao">
+                <input class="form-control" type="text" placeholder="Buscar" aria-label="Search">
+                <a class="dropdown-item" asp-area="" asp-controller="CitacaoCarta" asp-action="Index">
+                  <i class="fas fa-copy"></i> Citação por Carta
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="ExpedicaoNovoMandado" asp-action="Index">
+                  <i class="fas fa-copy"></i> Expedicao de Mandado
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="FielDepositario" asp-action="Index">
+                  <i class="fas fa-copy"></i> Fiel Depositário
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="InformarEndereco" asp-action="Index">
+                  <i class="fas fa-copy"></i> Informar Endereço
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="InformarOrgaos" asp-action="Index">
+                  <i class="fas fa-copy"></i> Informar Órgãos para Expedição e Ofícios
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="JuntadaTermoCessao" asp-action="Index">
+                  <i class="fas fa-copy"></i> Juntada de Termo de Cessão
+                </a>
+              </div>
+            </li>
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-lock"></i> Administrativo
+              </a>
+              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">
+                  <i class="fas fa-plus-circle"></i>&nbsp; Cadastro de Usuario
+                </a>
+                <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="Index">
+                  <i class="fas fa-tools"></i>&nbsp; Regras de Usuarios
+                </a>
+              </div>
+            </li>
+          </ul>
+          <partial name="_LoginPartial" />
+        </div>
+      </nav>
+      <!--/.Navbar -->
+    }
+  </header>
+  <div class="container-fluid">
+
+    <main role="main" class="pb-3">
+      @RenderBody()
+    </main>
+  </div>
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="~/js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="~/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="~/js/mdb.min.js"></script>
+  <!-- Stepper JavaScript - minified -->
+  <script type="text/javascript" src="~/js/addons-pro/steppers.min.js"></script>
+  <!-- Mascaras  -->
+  <script type="text/javascript" src="~/js/jquery.maskMoney.js"></script>
+  <!-- Datas  -->
+  <script type="text/javascript" src="~/js/moment.min.js"></script>
+  <script type="text/javascript" src="~/js/pt-br.min.js"></script>
+  <script type="text/javascript" src="~/js/jquery.maskedinput.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#notificacao').mdbDropSearch();
+    });
+  </script>
+
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
