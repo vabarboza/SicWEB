@@ -27,6 +27,10 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/)
 - [MySQL](https://www.mysql.com)
 
+<a href="https://github.com/vabarboza/SicWEB/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vabarboza/SicWEB"></a>
+<a href="https://github.com/vabarboza/SicWEB/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/vabarboza/SicWEB"></a>
+
+
 
 ### Autor
 Vinicius Araujo
