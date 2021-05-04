@@ -1,3 +1,7 @@
+<p align="center">
+<img  src="https://github.com/vabarboza/SicWEB/blob/master/wwwroot/img/toponew.png"/>
+</p>
+
 <h1 align="center">Sistema Integrado de Correio</h1>
 
 
@@ -11,12 +15,12 @@ Sistema criado em ASP.Net-Core, com banco de dados MySql, utilizando o padrão M
 	🚧  Em construção...  🚧
 </h4>
 
-### Features
+### ⚒️ Features
 - [x] Cadastro de usuário
 - [x] Cadastro de petições
 - [ ] Cadastro de Correios
 
-### 🛠 Tecnologias
+### ⚒️ Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
@@ -25,14 +29,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 
 ### Autor
+Vinicius Araujo
 
-<a href="https://blog.rocketseat.com.br/author/thiago/">
- <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/380327?s=460&u=61b426b901b8fe02e12019b1fdb67bf0072d4f00&v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Thiago Marinho</b></sub></a> <a href="https://blog.rocketseat.com.br/author/thiago//" title="Rocketseat">🚀</a>
-
-
-Feito com ❤️ por Thiago Marinho 👋🏽 Entre em contato!
-
-[![Twitter Badge](https://img.shields.io/badge/-@tgmarinho-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/tgmarinho)](https://twitter.com/tgmarinho) [![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/tgmarinho/) 
-[![Gmail Badge](https://img.shields.io/badge/-tgmarinho@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:tgmarinho@gmail.com)](mailto:tgmarinho@gmail.com)
