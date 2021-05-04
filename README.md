@@ -6,10 +6,9 @@
 
 
 <p align="center">Caracteristicas</p>
-<p>Sistema utilizado para padronização de envio de malotes e encomendas, adicionado gerador de petições com modelos prontos.
-Afim de reduzir erros de digitação e petições fora do modelo atual.
-Sistema criado em ASP.Net-Core, com banco de dados MySql, utilizando o padrão MVC.
-</p>
+<p>Sistema utilizado para padronização de envio de malotes e encomendas, adicionado gerador de petições com modelos prontos.</p>
+<p>Afim de reduzir erros de digitação e petições fora do modelo atual.</p>
+<p>Sistema criado em ASP.Net-Core, com banco de dados MySql, utilizando o padrão MVC.</p>
 
 <h4 align="center"> 
 	🚧  Em construção...  🚧
