@@ -18,5 +18,6 @@ namespace SicWEB.Data
     public DbSet<SicWEB.Models.InformarOrgao> InformarOrgao { get; set; }
     public DbSet<SicWEB.Models.ConversaoExecucao> ConversaoExecucao { get; set; }
     public DbSet<SicWEB.Models.JuntadaTermoCessao> JuntadaTermoCessao { get; set; }
+    public DbSet<SicWEB.Models.ConversaoExecucaoItau> ConversaoExecucaoItau { get; set; }
   }
 }

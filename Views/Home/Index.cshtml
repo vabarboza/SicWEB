@@ -104,8 +104,8 @@
                 <div class="carousel-item active">
                   <div class="card border-stylish-color" style="height: 414px;">
                     <div class="card-header text-white stylish-color">Grafico de Correios</div>
-                    <div class="card-body align-middle">
-                      <canvas id="chartCorreio" style="max-width: 100%; max-height: 330px"></canvas>
+                    <div class="card-body d-flex justify-content-center">
+                      <canvas id="chartCorreio" style="max-width: 650px;"></canvas>
                     </div>
                   </div>
                 </div>
@@ -113,28 +113,17 @@
                 <div class="carousel-item">
                   <div class="card border-stylish-color" style="height: 414px;">
                     <div class="card-header text-white stylish-color">Grafico de Malotes</div>
-                    <div class="card-body align-middle">
-                      <canvas id="chartMalote" style="max-width: 100%; max-height: 330px"></canvas>
+                    <div class="card-body d-flex justify-content-center">
+                      <canvas id="chartMalote" style="max-width: 650px;"></canvas>
                     </div>
                   </div>
                 </div>
 
-                <!--
-                <div class="carousel-item">
-                <div class="card border-stylish-color" style="height: 414px;">
-                <div class="card-header text-white stylish-color">Grafico de Notificações</div>
-                <div class="card-body align-middle">
-                <canvas id="chartNot" style="max-width: 100%; max-height: 330px"></canvas>
-                </div>
-                </div>
-                </div>
-                -->
-
                 <div class="carousel-item">
                   <div class="card border-stylish-color" style="height: 414px;">
                     <div class="card-header text-white stylish-color">Grafico de Notificações</div>
-                    <div class="card-body align-middle">
-                      <canvas id="horizontalBar" style="max-width: auto; max-height: 330px"></canvas>
+                    <div class="card-body d-flex justify-content-center">
+                      <canvas id="horizontalBar" style="max-width: 650px;"></canvas>
                     </div>
                   </div>
                 </div>
@@ -288,23 +277,37 @@
   </script>
 
   <script>
-    //pie
     new Chart(document.getElementById("horizontalBar"), {
       "type": "horizontalBar",
       "data": {
-        "labels": ['Citação Carta', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço', 'Informar Órgão', 'Juntada de Termo'],
+        "labels": ['Citação Carta', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço',
+          'Informar Órgão', 'Juntada de Termo', 'Conversao em Execucao', 'Conversao em Execucao - Itaú' ],
         "datasets": [{
           "label": "Envios",
           "data": [@ViewBag.ContarCitacaocarta, @ViewBag.ContarExpedicaoMandado,
                   @ViewBag.ContarFielDepositario, @ViewBag.ContarInformarEndereco,
-                  @ViewBag.ContarInformarOrgao, @ViewBag.ContarNotificacaoJuntadaTermoCessao],
+                  @ViewBag.ContarInformarOrgao, @ViewBag.ContarNotificacaoJuntadaTermoCessao,
+                  @ViewBag.ContarNotificacaoConversaoExecucao,@ViewBag.ContarNotificacaoConversaoExecucaoItau],
           "fill": false,
-          "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
-            "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
-            "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
+          "backgroundColor": [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+            "rgba(255, 205, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(143, 169, 102, 0.2)",
+            "rgba(165, 112, 71, 0.2)"
           ],
-          "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
-            "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"
+          "borderColor": [
+            "rgb(255, 99, 132)",
+            "rgb(255, 159, 64)",
+            "rgb(255, 205, 86)",
+            "rgb(75, 192, 192)",
+            "rgb(54, 162, 235)",
+            "rgb(153, 102, 255)",
+            "rgb(143, 169, 102)",
+            "rgb(165, 112, 71)"
           ],
           "borderWidth": 1
         }]
@@ -320,7 +323,6 @@
       }
     });
   </script>
-
 
 }
 

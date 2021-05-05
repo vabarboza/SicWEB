@@ -1,0 +1,186 @@
+﻿@model SicWEB.Models.ConversaoExecucaoItau
+@{
+  Layout = "_Layout2";
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversao Execucao - SicWEB</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="~/css/StyleSheet.css">
+</head>
+
+<body>
+  <div class="d-flex justify-content-center">
+    <div id="footer_wrapper">
+      <div id="footer_content" class="text-center" style="font-size:xx-small">
+        Endereço: Av. Duque de Caxias, 882, Bairro: Zona 01 - CEP 87.013-180, 12º ANDAR – SL 1201<br />
+        Ed. New Tower Plaza – Torre II– Maringá - PR   - Fone: (44) 3033-9291 / (44) 2103-9291
+      </div>
+    </div>
+  </div>
+
+  <TABLE>
+
+    <THEAD>
+      <TR>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+        <TH><br /><img src="~/img/itau.png" class="rounded mx-auto d-block mb-3" style="width: 100%"></TH>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+      </TR>
+    </THEAD>
+
+    <TBODY>
+      <TR>
+        <TD></TD>
+        <TD>
+          <p class="text-justify font-weight-bold mb-5 mt-5">
+            EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA @Html.DisplayFor(model => model.Vara) DA COMARCA DE
+            @Html.DisplayFor(model => model.Comarca) – ESTADO DE @Html.DisplayFor(model => model.Estado)
+          </p>
+
+          <p class="font-weight-bold mb-5">
+            Processo nº  @Html.DisplayFor(model => model.Processo)
+          </p>
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>@Html.DisplayFor(model => model.Banco)</strong> já qualificado nos autos da ação em epígrafe, em que litiga com
+            <strong>@Html.DisplayFor(model => model.Reu)</strong>,
+            também já qualificado, vêm respeitosamente à presença de Vossa Excelência, requerer o que segue:
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Vem à instituição financeira perante esse Juízo requerer a <strong>CONVERSÃO</strong> do pleito inicial em
+            <strong>EXECUÇÃO POR QUANTIA CERTA</strong> nos termos dos artigos 4º e 5º do DL 911/69, cumulado com o artigo 329,
+            I do CPC, pelos fatos e fundamentos jurídicos que passa a expor:
+          </p>
+
+          <p class="text-justify font-weight-bold">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            I – DOS FATOS
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Trata-se de ação interposta pelo banco em face do cliente, considerando o inadimplemento do contrato entabulado entre as partes, a fim de que fosse feita a apreensão do veículo objeto do pacto.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Ocorre que não foi possível a localização do bem, sendo assim, o réu permanece devedor dos valores apontados na inicial.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Dessa forma, o requerente permanece credor do requerido do valor líquido, certo e exigível, do valor indicado na petição inicial.
+          </p>
+
+          <p class="text-justify font-weight-bold">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            II – DO CABIMENTO DO PEDIDO
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            A conversão da ação em Execução por Quantia Certa é a manifestação material do Princípio da Instrumentalidade, da Economia e da Celeridade Processual e atende ao Princípio do Devido Processo Legal.
+          </p>
+
+          <p class="text-justify font-weight-bold">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            O Decreto-Lei nº 911/69, alterado pela Lei nº 13.043/2014, em seu artigo 4º combinado com o art. 5º, abre ao credor a faculdade de requerer a conversão do pleito em ação executiva se o bem alienado não for localizado. Nessa linha, o art. 329, I do CPC permite a alteração do pedido e/ou causa de pedir antes da citação do Réu.
+          </p>
+
+          <p class="text-justify font-weight-bold">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            III – DO PEDIDO
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Ante o exposto, requer-se seja deferido o pedido de conversão da presente ação em
+            <strong>EXECUÇÃO POR QUANTIA CERTA</strong>
+            contra devedor solvente, determinando seja o Requerido citado para:
+          </p>
+
+          <p class="tab text-justify font-weight-bold">A)	Promover o pagamento da dívida – art. 829 do CPC;</p>
+          <p class="tab text-justify font-weight-bold">
+            B)	Na falta de pagamento, que nomeie bens suficientes à penhora, sob pena de não o
+            fazendo, serem penhorados tantos quanto forem necessários para a satisfação integral do débito e demais encargos
+            ficando, desde logo, intimado para no prazo legal oferecer embargos.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Caso o Requerido não seja encontrado pelo Oficial de Justiça para citação e penhora, requer seja realizado o
+            arresto de tantos bens quantos bastem para garantir a execução, como determina o artigo 830 do CPC, ficando
+            igualmente citado para, no prazo legal, opor embargos se assim desejar.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Requer, outrossim, a <strong>PROCEDÊNCIA DOS PEDIDOS</strong>, condenando o Executado ao pagamento das custas processuais e
+            honorários advocatícios decorrentes da presente execução.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Pugna-se, igualmente, pela juntada da planilha em anexo, a qual demonstra o valor total devido pelo cliente,
+            devidamente atualizado.
+          </p>
+
+          <p class="text-justify font-weight-bold">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            VALOR DA AÇÃO: @Html.DisplayFor(model => model.ValorReal)
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Outrossim, requer ainda que as intimações de todos os atos processuais destes autos deem-se na forma
+            prevista nos artigos 272 e 274 do CPC, na pessoa de
+            <strong>CRISTIANE BELINATI GARCIA @Html.DisplayFor(model => model.Oab)</strong>,
+            independentemente dos demais procuradores constantes nas procurações e substabelecimentos juntados a estes autos,
+            sob pena de nulidade da intimação, conforme previsto no artigo 280 do CPC.
+          </p>
+
+          <p class="text-justify mt-5 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nestes termos.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Pede e espera deferimento.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Maringá, @Html.DisplayFor(model => model.Data).
+          </p>
+          <br /><br /><br />
+          <p class="text-center font-weight-bold mt-5">
+            CRISTIANE BELINATI GARCIA LOPES<br />
+            @Html.DisplayFor(model => model.Oab)
+          </p>
+
+        </TD>
+        <TD></TD>
+      </TR>
+    </TBODY>
+
+    <TFOOT id="table_footer">
+      <TR>
+        <TH><br /><br /><br /></TH>
+        <TH><br /><br /><br /></TH>
+      </TR>
+    </TFOOT>
+
+  </TABLE>
+
+  <script>
+    window.print();
+    window.onafterprint = function () {
+      window.close();
+    }
+  </script>
+
+</body>
+</html>

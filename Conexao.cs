@@ -245,6 +245,8 @@ namespace BellinatiCorreio.Views.Home
       var citacaoCarta = 0;
       var informarOrgaos = 0;
       var juntadaTermo = 0;
+      var conversaoExecucao = 0;
+      var conversaoExecucaoItau = 0;
 
       using (var conexao = new MySqlConnection())
       {
@@ -271,9 +273,17 @@ namespace BellinatiCorreio.Views.Home
 
           comando.CommandText = string.Format("Select count(*) from juntadatermocessao");
           juntadaTermo = (int)(long)comando.ExecuteScalar();
+
+          comando.CommandText = string.Format("Select count(*) from conversaoexecucao");
+          conversaoExecucao = (int)(long)comando.ExecuteScalar();
+
+          comando.CommandText = string.Format("Select count(*) from conversaoexecucaoitau");
+          conversaoExecucaoItau = (int)(long)comando.ExecuteScalar();
         }
       }
-      var count = informarEndereco + fielDepositario + expedicaoNovoMandado + citacaoCarta + informarOrgaos + juntadaTermo;
+      var count =
+        informarEndereco + fielDepositario + expedicaoNovoMandado + citacaoCarta + informarOrgaos +
+        juntadaTermo + conversaoExecucao + conversaoExecucaoItau;
       return count;
     }
 
@@ -387,6 +397,46 @@ namespace BellinatiCorreio.Views.Home
         {
           comando.Connection = conexao;
           comando.CommandText = string.Format("Select count(*) from juntadatermocessao");
+          count = (int)(long)comando.ExecuteScalar();
+        }
+      }
+      return count;
+    }
+
+
+    //Contador de notificações
+    public int ContarNotificacaoConversaoExecucao()
+    {
+      var count = 0;
+      using (var conexao = new MySqlConnection())
+      {
+        conexao.ConnectionString = ConexaoDados();
+        conexao.Open();
+
+        using (var comando = new MySqlCommand())
+        {
+          comando.Connection = conexao;
+          comando.CommandText = string.Format("Select count(*) from conversaoexecucao");
+          count = (int)(long)comando.ExecuteScalar();
+        }
+      }
+      return count;
+    }
+
+
+    //Contador de notificações
+    public int ContarNotificacaoConversaoExecucaoItau()
+    {
+      var count = 0;
+      using (var conexao = new MySqlConnection())
+      {
+        conexao.ConnectionString = ConexaoDados();
+        conexao.Open();
+
+        using (var comando = new MySqlCommand())
+        {
+          comando.Connection = conexao;
+          comando.CommandText = string.Format("Select count(*) from conversaoexecucaoitau");
           count = (int)(long)comando.ExecuteScalar();
         }
       }

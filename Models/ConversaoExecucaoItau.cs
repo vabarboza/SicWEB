@@ -1,19 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SicWEB.Models
 {
-  public class ConversaoExecucao
+  public class ConversaoExecucaoItau
   {
     public int Id { get; set; }
 
-    [Display(Name = "Autos:")]
+    [Display(Name = "Processo:")]
     [Required(ErrorMessage = "Campo de preenchimento obrigatório!")]
-    public string Autos { get; set; }
-
-    [Display(Name = "Contrato:")]
-    [Required(ErrorMessage = "Campo de preenchimento obrigatório!")]
-    public Int64 Contrato { get; set; }
+    public Int64 Processo { get; set; }
 
     [Display(Name = "Vara:")]
     [Required(ErrorMessage = "Campo de preenchimento obrigatório!")]
@@ -38,10 +37,6 @@ namespace SicWEB.Models
     [Display(Name = "Valor:")]
     [Required(ErrorMessage = "Campo de preenchimento obrigatório!")]
     public string ValorReal { get; set; }
-
-    [Display(Name = "Valor Descrito:")]
-    [Required(ErrorMessage = "Campo de preenchimento obrigatório!")]
-    public string ValorDescrito { get; set; }
 
     [Display(Name = "O.A.B:")]
     [Required(ErrorMessage = "Campo de preenchimento obrigatório!")]

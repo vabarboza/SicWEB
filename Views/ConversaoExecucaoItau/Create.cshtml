@@ -1,4 +1,4 @@
-﻿@model SicWEB.Models.ConversaoExecucao
+﻿@model SicWEB.Models.ConversaoExecucaoItau
 
 @{
   ViewData["Title"] = "Create";
@@ -18,20 +18,13 @@
       <div class="form-row">
 
         <div class="form-group col-md-3">
-          <label asp-for="Autos" class="control-label font-weight-bolder"></label>
-          <input asp-for="Autos" onkeypress='validate(event)' class="form-control" />
-          <small class="form-text text-muted">Favor informar N° dos autos.</small>
-          <span asp-validation-for="Autos" class="text-danger"></span>
+          <label asp-for="Processo" class="control-label font-weight-bolder"></label>
+          <input asp-for="Processo" type="text" onkeypress='validate(event)' class="form-control" />
+          <small class="form-text text-muted">Favor informar N° do processo.</small>
+          <span asp-validation-for="Processo" class="text-danger"></span>
         </div>
 
-        <div class="form-group col-md-2">
-          <label asp-for="Contrato" class="control-label font-weight-bolder"></label>
-          <input asp-for="Contrato" onkeypress='validate(event)' type="text" class="form-control" />
-          <small class="form-text text-muted">Favor informar N° do contrato.</small>
-          <span asp-validation-for="Contrato" class="text-danger"></span>
-        </div>
-
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
           <label asp-for="Comarca" class="control-label font-weight-bolder"></label>
           <input asp-for="Comarca" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
           <small class="form-text text-muted">Favor informar a comarca.</small>
@@ -74,7 +67,7 @@
           <span asp-validation-for="Estado" class="text-danger"></span>
         </div>
 
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-3">
           <label asp-for="Vara" class="control-label font-weight-bolder"></label>
           <input asp-for="Vara" onkeyup="this.value = this.value.toUpperCase();" class="form-control" />
           <small class="form-text text-muted">Favor informar a vara.</small>
@@ -98,13 +91,8 @@
         <div class="form-group col-md-2">
           <label asp-for="ValorReal" class="control-label"></label>
           <input asp-for="ValorReal" class="form-control" onKeyPress="return(moeda(this,'.',',',event))" placeholder="R$" />
+          <small class="form-text text-muted">Favor informar o valor da causa.</small>
           <span asp-validation-for="ValorReal" class="text-danger"></span>
-        </div>
-
-        <div class="form-group col-md-4">
-          <label asp-for="ValorDescrito" class="control-label"></label>
-          <input asp-for="ValorDescrito" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
-          <span asp-validation-for="ValorDescrito" class="text-danger"></span>
         </div>
 
         <div class="form-group col-md-3">
@@ -149,6 +137,7 @@
           <small class="form-text text-muted">Data atual do cadastro.</small>
           <span asp-validation-for="Data" class="text-danger"></span>
         </div>
+
       </div>
 
       <div class="form-group">
@@ -159,7 +148,6 @@
     </form>
   </div>
 </div>
-
 
 @section Scripts {
 
@@ -244,3 +232,4 @@
     }
   </script>
 }
+

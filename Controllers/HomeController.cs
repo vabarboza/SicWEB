@@ -36,6 +36,8 @@ namespace SicWEB.Controllers
       ViewBag.ContarInformarEndereco = c.ContarNotificacaoInformarEndereco();
       ViewBag.ContarInformarOrgao = c.ContarNotificacaoInformarOrgao();
       ViewBag.ContarNotificacaoJuntadaTermoCessao = c.ContarNotificacaoJuntadaTermoCessao();
+      ViewBag.ContarNotificacaoConversaoExecucao = c.ContarNotificacaoConversaoExecucao();
+      ViewBag.ContarNotificacaoConversaoExecucaoItau = c.ContarNotificacaoConversaoExecucaoItau();
 
       return View();
     }
