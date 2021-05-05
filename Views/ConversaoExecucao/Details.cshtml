@@ -1,90 +1,285 @@
 ﻿@model SicWEB.Models.ConversaoExecucao
-
 @{
-    ViewData["Title"] = "Details";
+  Layout = "_Layout2";
 }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversao Execucao - SicWEB</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
 
-<h1>Details</h1>
+  <link rel="stylesheet" href="~/css/StyleSheet.css">
+</head>
 
-<div>
-    <h4>ConversaoExecucao</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Autos)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contrato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contrato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vara)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vara)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comarca)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comarca)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Banco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Banco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ValorReal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ValorReal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ValorDescrito)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ValorDescrito)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Oab)
-        </dt>
-        <dd class = "col-sm-10">
+<body>
+  <div class="d-flex justify-content-center">
+    <div id="footer_wrapper">
+      <div id="footer_content" class="text-center" style="font-size:xx-small">
+        Endereço: Av. Duque de Caxias, 882, Bairro: Zona 01 - CEP 87.013-180, 12º ANDAR – SL 1201<br />
+        Ed. New Tower Plaza – Torre II– Maringá - PR   - Fone: (44) 3033-9291 / (44) 2103-9291
+      </div>
+    </div>
+  </div>
+
+  <TABLE>
+
+    <THEAD>
+      <TR>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+        <TH><br /><img src="~/img/logo.png" class="rounded mx-auto d-block mb-3" style="width: 40%"></TH>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+      </TR>
+    </THEAD>
+ 
+    <TBODY>     
+      <TR>
+        <TD></TD>
+        <TD>
+          <p class="text-justify font-weight-bold mb-4 mt-3">
+            EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA @Html.DisplayFor(model => model.Vara) DA COMARCA DE
+            @Html.DisplayFor(model => model.Comarca) – ESTADO DE @Html.DisplayFor(model => model.Estado)
+          </p>
+
+          <p class="font-weight-bold mb-5">
+            Autos n.º @Html.DisplayFor(model => model.Autos)
+            <br />
+            Contrato nº @Html.DisplayFor(model => model.Contrato)
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            @Html.DisplayFor(model => model.Banco), já qualificado nos autos em epígrafe, por intermédio de seu procurador
+            que a esta subscreve, com escritório profissional no endereço constante do rodapé desta, proposta em face de
+            @Html.DisplayFor(model => model.Reu), também já qualificado, vem, com o devido respeito e acatamento, perante
+            Vossa Excelência, requerer a:
+          </p>
+
+          <p class="text-center font-weight-bold ">
+            <u> CONVERSÃO DA AÇÃO DE BUSCA E APREENSÃO EM AÇÃO DE EXECUÇÃO DE TÍTULO EXTRAJUDICIAL</u>
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            pelos seguintes fundamentos de fato e de direito:
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Compulsando os autos, verifica-se que o veículo é deslocalizado o que inviabilizou o cumprimento da
+            liminar e do respectivo Mandado de Busca e Apreensão.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            De acordo com a legislação, é facultado ao credor o direito de requerer a conversão da busca e apreensão
+            em ação executiva, o que se extrai do art. 5º, caput, do Decreto-Lei 911/69:
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <em>
+              “Se o credor preferir recorrer a ação executiva, (…), serão penhorados, a critério do autor da ação,
+              bens do devedor quantos bastem para assegurar a execução.”
+            </em>
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Com efeito, o crédito resultante de financiamento concedido com garantia contratual de alienação fiduciária é
+            perfeitamente exequível.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nesse sentido, o entendimento do Poder Judiciário:
+          </p>
+
+          <p class="tab text-justify font-italic">
+            ALIENAÇÃO FIDUCIÁRIA. BUSCA E APREENSÃO. CONVERSÃO EM AÇÃO DE EXECUÇÃO DE TÍTULO EXTRAJUDICIAL.
+            Possibilidade não citada a parte contrária e frustrada a localização do bem, é plenamente possível a conversão
+            nos termos do art. 5º, do Decreto-Lei 911/69 inteligência dos arts. 264 e 294 do Código de Processo Civil decisão
+            reformada. RECURSO DO AUTOR PROVIDO Agravo de Instrumento nº 0116045-10.2011.8.26.0000 - São José do Rio Preto
+          </p>
+          <p class="tab text-justify font-italic">
+            “AGRAVO DE INSTRUMENTO. Conversão de busca e apreensão fiduciária em execução por quantia certa. Possibilidade.
+            Recurso do credor. Provimento.” (Agravo de Instrumento nº0537065 26.2010.8.26.0000. Des. Rel. Carlos Russo.
+            DJ 11.05.2011.)
+          </p>
+          <p class="tab text-justify font-italic">
+            “ALIENAÇÃO FIDUCIÁRIA. Ação de busca e apreensão. (...) Veículo não localizado. Réu não citado.
+            Alteração do pedido, para que o feito prossiga como execução de título extrajudicial Admissibilidade.
+            Inteligência dos artigos 264, do Código de Processo Civil, e 5º, do Decreto-lei nº 911/69 Decisão reformada -
+            Recurso provido.” (Agravo de Instrumento nº 0081771 20.2011.8.26.0000. Des. Rel. Carlos Nunes. DJ 16.05.2011.)
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Por sua vez, até mesmo em observação do que diz o STJ acerca da purgação da mora com o surgimento da Lei 10.931/04,
+            é perfeitamente possível converter a ação de busca e apreensão para ação de execução pelo valor integral
+            da dívida (parcelas vencidas + parcelas vincendas). Vejamos:
+          </p>
+
+          <p class="tab text-justify font-weight-bold">
+            AÇÃO DE BUSCA E APREENSÃO. PURGAÇÃO DE MORA. INCABÍVEL. PAGAMENTO DA INTEGRALIDADE DO DÉBITO. REDAÇÃO DA
+            LEI N. 10.931/2004. 1. A nova redação do art. 3º do Decreto-Lei n. 911/69, introduzida pela Lei n.10.931/04,
+            não mais admite purgação da mora na ação de busca e apreensão, podendo o credor, nos termos do respectivo § 2º,
+            pagar a integralidade da dívida pendente segundo os valores apresentados pelo credor fiduciário na inicial,
+            hipótese na qual o bem lhe será restituído livre de ônus.2. Recurso especial provido.
+            {(Superior Tribunal de Justiça – RECURSO ESPECIAL Nº 1.057.022 - PR (2008/0103343-2)}
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Outrossim, o vencimento antecipado da dívida, que autoriza a execução pelo valor integral da dívida,
+            decorreria não apenas de cláusula contratual ou rito processual executivo, mas também pela norma abstraída
+            do artigo 1.425 do Código Civil Brasileiro.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Observa-se, ainda, o disposto no artigo 854, caput, do Novo Código de Processo Civil:
+          </p>
+
+          <p class="tab text-justify font-italic">
+            Art. 854. Para possibilitar a penhora de dinheiro em depósito ou em aplicação financeira, o juiz,
+            a requerimento do exequente, <strong>sem dar ciência prévia do ato ao executado</strong>, determinará às
+            instituições financeiras,
+            por meio de sistema eletrônico gerido pela autoridade supervisora do sistema financeiro nacional,
+            que torne indisponíveis ativos financeiros existentes em nome do executado, limitando-se a indisponibilidade ao
+            valor indicado na execução. (grifamos)
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Aufere-se, portanto, que a alteração voluntária da Busca e Apreensão em Ação de Execução,
+            bem como a possibilidade de tornar indisponíveis ativos financeiros em nome do executado nos limites indicados
+            na execução, traz efetividade aos princípios da celeridade e da economia processual.
+          </p>
+
+          <p class="text-justify font-weight-bold">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            DOS PEDIDOS E REQUERIMENTOS
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Ante o exposto, <strong>REQUER:</strong>
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>a.</strong> Seja convertida a ação de busca e apreensão em ação de execução de título extrajudicial,
+            com fundamento nos artigos 778, caput e 784, II e XII  do Novo Código de Processo Civil;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>b.</strong> Seja determinado às instituições financeiras que tornem indisponíveis ativos financeiros em nome da executada,
+            observando-se a desnecessidade de sua prévia ciência, limitando-se a indisponibilidade ao valor indicado na execução,
+            por meio de sistema eletrônico, conforme dispõe o artigo 854 do mesmo diploma processual;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.</strong> Em havendo manifestação tempestiva do Executado (art. 854, § 3°, CPC), requer sejam aplicados os dispostos nos
+            artigos 827 e seguintes do CPC, com a devida citação da parte executada, no endereço já diligenciado,
+            através de carta com AR, para que no prazo de 03 (três) dias, efetue o pagamento da importância devida,
+            nos termos do artigo 829, § § 1° e 2°, devidamente corrigida, acrescida de juros de mora, custas processuais e
+            honorários advocatórios, estes nos termos do artigo 827, ou, querendo, ofereça embargos no prazo legal;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.1.</strong> Requer, desde já, caso não haja o adimplemento do débito, e independentemente da oposição de embargos,
+            sejam adotadas as medidas previstas no artigo 837, por intermédio do Sistema BacenJud, observada a ordem e a
+            gradação do artigo 835, da mencionada Lei Adjetiva e os limites financeiros que norteiam esta execução;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.2.</strong> Na eventualidade de não serem encontrados ativos em nome do Executado, requer seja efetivada a penhora e
+            avaliação - por mandado judicial, e por intermédio de Oficial de Justiça - incidindo em tantos bens quantos
+            bastem ao pagamento do principal atualizado, acrescido de juros, custas processuais e honorários advocatícios;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.3.</strong> Em sendo necessária a penhora, e esta venha recair sobre bens imóveis, requer que a mesma seja realizada
+            na forma concedida pelo artigo 844 do NCPC, com a consequente intimação do respectivo cônjuge (art. 842);
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.4.</strong> Recaindo a penhora sobre bens móveis, requer sejam removidos para o Depositário Público;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.5.</strong> Caso não seja encontrado o Executado para citação, proceda o Sr. Oficial de Justiça o arresto de seus bens,
+            facultando o mesmo procedimento requerido no item “c.4” acima;
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>c.6.</strong> Requer sejam as diligências beneficiadas pelo disposto no artigo 212 e parágrafos do CPC.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>d.</strong> Em <u>não</u> havendo manifestação do Executado ou não sendo encontrados ativos em seu nome, requer o
+            <u><strong>ARQUIVAMENTO PROVISÓRIO</strong></u> do feito, tendo em vista o esgotamento de diligências a serem tomadas.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Outrossim, requer que todas as intimações dos atos processuais destes autos sejam efetivadas na forma prevista
+            nos artigos 270 e 272 do CPC (Lei 13.105/2015), na pessoa de Cristiane Belinati Garcia Lopes, OAB/BA 25.579,
+            independentemente dos demais procuradores constantes nas procurações e substabelecimentos juntados a estes autos,
+            sob pena de nulidade da intimação, conforme previsto no artigo 280 do CPC.
+          </p>
+
+          <p class="text-justify">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Dá-se à causa o valor de <strong>@Html.DisplayFor(model => model.ValorReal) (@Html.DisplayFor(model => model.ValorDescrito)).</strong>
+          </p>
+
+          <p class="text-justify mt-3 mb-3">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nestes termos.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Pede e espera deferimento.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Maringá, @Html.DisplayFor(model => model.Data).
+          </p>
+
+          <p class="text-center font-weight-bold mt-2">
+            CRISTIANE BELINATI GARCIA LOPES<br />
             @Html.DisplayFor(model => model.Oab)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeUser)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+          </p>
+
+        </TD>
+        <TD></TD>
+      </TR>
+    </TBODY>
+
+    <TFOOT id="table_footer">
+      <TR>
+        <TH><br /><br /><br /></TH>
+        <TH><br /><br /><br /></TH>
+      </TR>
+    </TFOOT>
+
+  </TABLE>
+
+  <script>
+    window.print();
+    window.onafterprint = function () {
+      window.close();
+    }
+  </script>
+
+</body>
+</html>

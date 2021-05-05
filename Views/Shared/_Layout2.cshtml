@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="~/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="~/css/mdb.min.css">
+
+  <link rel="stylesheet" href="~/css/StyleSheet.css">
+
+</head>
+<body>
+  <header>
+  </header>
+
+      @RenderBody()
+
+
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

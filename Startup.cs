@@ -104,6 +104,7 @@ namespace SicWEB
       app.UseAuthorization();
       app.UseCookiePolicy();
 
+
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllerRoute(

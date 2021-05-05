@@ -1,0 +1,29 @@
+﻿@media screen {
+  div#footer_wrapper {
+    display: none;
+  }
+}
+
+@media print {
+  tfoot {
+    visibility: hidden;
+  }
+
+  div#footer_wrapper {
+    margin: 0px 2px 0px 7px;
+    position: fixed;
+    justify-content: center;
+    bottom: 0;
+  }
+
+  div#footer_content {
+    font-weight: 300;
+  }
+}
+
+p.tab {
+  padding-left: 410px; /* Or desired space*/
+}
+html {
+  font-size: 115%; /* font-size 1em = 10px on default browser settings */
+}
