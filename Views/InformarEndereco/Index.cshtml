@@ -116,7 +116,7 @@
             </td>
             <td>
               <a id="badge" class="badge badge-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen-square fa-lg p-2"></i></a>
-              <a class="badge badge-success" asp-controller="InformarEndereco" asp-action="GerarRelatorio" asp-route-id="@item.Id"><i class="fas fa-file-alt fa-lg p-2"></i></a>
+              <a class="badge badge-success" target="_blank" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-file-alt fa-lg p-2"></i></a>
               <a class="badge badge-dark" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt fa-lg p-2"></i></a>
             </td>
           </tr>

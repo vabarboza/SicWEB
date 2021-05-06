@@ -1,84 +1,111 @@
 ﻿@model SicWEB.Models.InformarEndereco
-
 @{
-    ViewData["Title"] = "Details";
+  Layout = "_Layout2";
 }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversao Execucao - SicWEB</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
 
-<h1>Details</h1>
+  <link rel="stylesheet" href="~/css/StyleSheet.css">
+  <style>
+    html {
+      font-size: 20px;
+    }
+  </style>
+</head>
 
-<div>
-    <h4>InformarEndereco</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Autos)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contrato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contrato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vara)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vara)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comarca)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comarca)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Banco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Banco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Endereco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Oab)
-        </dt>
-        <dd class = "col-sm-10">
+<body>
+  <div class="d-flex justify-content-center">
+    <div id="footer_wrapper">
+      <div id="footer_content" class="text-center" style="font-size:xx-small">
+        Endereço: Av. Duque de Caxias, 882, Bairro: Zona 01 - CEP 87.013-180, 12º ANDAR – SL 1201<br />
+        Ed. New Tower Plaza – Torre II– Maringá - PR   - Fone: (44) 3033-9291 / (44) 2103-9291
+      </div>
+    </div>
+  </div>
+
+  <TABLE>
+
+    <THEAD>
+      <TR>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+        <TH><br /><img src="~/img/logo.png" class="rounded mx-auto d-block mb-3" style="width: 40%"><hr /></TH>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+      </TR>
+    </THEAD>
+
+    <TBODY>
+      <TR>
+        <TD></TD>
+        <TD>
+          <p class="text-justify font-weight-bold mb-4 mt-3">
+            EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA @Html.DisplayFor(model => model.Vara) DA COMARCA DE
+            @Html.DisplayFor(model => model.Comarca) – ESTADO DE @Html.DisplayFor(model => model.Estado)
+          </p>
+
+          <p class="font-weight-bold mb-5">
+            Autos n.º @Html.DisplayFor(model => model.Autos)
+            <br />
+            Contrato nº @Html.DisplayFor(model => model.Contrato)
+          </p>
+
+          <p class="text-justify mt-3 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>@Html.DisplayFor(model => model.Banco)</strong>, já qualificada nos autos em epígrafe, que litiga contra
+            <strong>@Html.DisplayFor(model => model.Reu)</strong>, também já qualificada, por seus advogados que esta subscrevem,
+            vem, respeitosamente perante Vossa Excelência, <strong>INFORMAR</strong> o endereço da parte ré, para que proceda com
+            a expedição do respectivo mandado, o qual segue:
+            <strong>@Html.DisplayFor(model => model.Endereco)</strong>.
+          </p>
+
+          <p class="text-justify mt-3 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Outrossim, requer que todas as intimações dos atos processuais destes autos sejam efetivadas na forma prevista 
+            nos artigos 270 e 272 do Novo C.P.C.(Lei 13.105/2015), na pessoa de 
+            <strong>Cristiane Belinati Garcia Lopes, @Html.DisplayFor(model => model.Oab)</strong>, independentemente dos demais 
+            procuradores constantes nas procurações e substabelecimentos juntados a estes autos, sob pena de nulidade da intimação,
+            conforme previsto no artigo 280 do Novo C.P.C.
+          </p>
+
+          <p class="text-justify mt-3 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nestes termos.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Pede e espera deferimento.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Maringá, @Html.DisplayFor(model => model.Data).
+          </p>
+
+          <p class="text-center font-weight-bold mt-5">
+            CRISTIANE BELINATI GARCIA LOPES<br />
             @Html.DisplayFor(model => model.Oab)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeUser)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+          </p>
+
+        </TD>
+        <TD></TD>
+      </TR>
+    </TBODY>
+
+    <TFOOT id="table_footer">
+      <TR>
+        <TH><br /><br /><br /></TH>
+        <TH><br /><br /><br /></TH>
+      </TR>
+    </TFOOT>
+
+  </TABLE>
+
+  <script>
+    window.print();
+    window.onafterprint = function () {
+      window.close();
+    }
+  </script>
+
+</body>
+</html>

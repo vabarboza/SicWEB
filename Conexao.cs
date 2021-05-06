@@ -209,7 +209,7 @@ namespace BellinatiCorreio.Views.Home
         using (var comando = new MySqlCommand())
         {
           comando.Connection = conexao;
-          comando.CommandText = string.Format("Select NomeUser from AspNetUsers where UserName = '" + nome + "'");
+          comando.CommandText = string.Format("select nomeuser('" + nome + "')");
           nome = (string)comando.ExecuteScalar();
         }
       }
@@ -228,7 +228,7 @@ namespace BellinatiCorreio.Views.Home
         using (var comando = new MySqlCommand())
         {
           comando.Connection = conexao;
-          comando.CommandText = string.Format("Select FilialUser from AspNetUsers where UserName = '" + nome + "'");
+          comando.CommandText = string.Format("select cidadeuser('" + nome + "')");
           nome = (string)comando.ExecuteScalar();
         }
       }
