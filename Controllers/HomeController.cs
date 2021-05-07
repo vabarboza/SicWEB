@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SicWEB.Models;
+using System.Net;
 using System.Diagnostics;
 
 namespace SicWEB.Controllers
@@ -22,8 +23,6 @@ namespace SicWEB.Controllers
 
     public IActionResult Index()
     {
-      ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
-
       ViewBag.TotalMalote = c.ContarMalote();
       ViewBag.TotalMaringa = c.ContarMaringa();
       ViewBag.TotalCuritiba = c.ContarCuritiba();
@@ -38,12 +37,56 @@ namespace SicWEB.Controllers
       ViewBag.ContarNotificacaoJuntadaTermoCessao = c.ContarNotificacaoJuntadaTermoCessao();
       ViewBag.ContarNotificacaoConversaoExecucao = c.ContarNotificacaoConversaoExecucao();
       ViewBag.ContarNotificacaoConversaoExecucaoItau = c.ContarNotificacaoConversaoExecucaoItau();
+      ViewBag.MaloteAtrasado = c.MaloteAtrasado();
 
+      string nomeUser = c.NomeUser(User.Identity.Name);
+      ViewBag.MaloteUser = c.MaloteUsuario(nomeUser);
+      ViewBag.NotifiUser = c.ContarNotificacaoUser(nomeUser);
+      ViewBag.MaloteAtrasadoUser = c.MaloteAtrasadoUser(nomeUser);
+
+      string host = Dns.GetHostName();
+      IPAddress[] ips;
+      ips = Dns.GetHostAddresses(host);
+      foreach (IPAddress ip in ips)
+      {
+        ViewBag.Ip = ip; ;
+      }
+
+      ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
 
     public IActionResult Privacy()
     {
+      ViewBag.TotalMalote = c.ContarMalote();
+      ViewBag.TotalMaringa = c.ContarMaringa();
+      ViewBag.TotalCuritiba = c.ContarCuritiba();
+      ViewBag.TotalSP = c.ContarSP();
+
+      ViewBag.ContarNotificacao = c.ContarNotificacao();
+      ViewBag.ContarCitacaocarta = c.ContarNotificacaoCitacao();
+      ViewBag.ContarExpedicaoMandado = c.ContarNotificacaoExpedicao();
+      ViewBag.ContarFielDepositario = c.ContarNotificacaoFiel();
+      ViewBag.ContarInformarEndereco = c.ContarNotificacaoInformarEndereco();
+      ViewBag.ContarInformarOrgao = c.ContarNotificacaoInformarOrgao();
+      ViewBag.ContarNotificacaoJuntadaTermoCessao = c.ContarNotificacaoJuntadaTermoCessao();
+      ViewBag.ContarNotificacaoConversaoExecucao = c.ContarNotificacaoConversaoExecucao();
+      ViewBag.ContarNotificacaoConversaoExecucaoItau = c.ContarNotificacaoConversaoExecucaoItau();
+      ViewBag.MaloteAtrasado = c.MaloteAtrasado();
+
+      string nomeUser = c.NomeUser(User.Identity.Name);
+      ViewBag.MaloteUser = c.MaloteUsuario(nomeUser);
+      ViewBag.NotifiUser = c.ContarNotificacaoUser(nomeUser);
+      ViewBag.MaloteAtrasadoUser = c.MaloteAtrasadoUser(nomeUser);
+
+      string host = Dns.GetHostName();
+      IPAddress[] ips;
+      ips = Dns.GetHostAddresses(host);
+      foreach (IPAddress ip in ips)
+      {
+        ViewBag.Ip = ip; ;
+      }
+
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
