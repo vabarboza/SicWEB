@@ -40,7 +40,9 @@ namespace SicWEB.Migrations
             TwoFactorEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
             LockoutEnd = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
             LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
-            AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+            AccessFailedCount = table.Column<int>(type: "int", nullable: false),
+            NomeUser = table.Column<string>(type: "varchar(80) CHARACTER SET utf8mb4", nullable: false, defaultValue: "Sem Nome"),
+            FilialUser = table.Column<string>(type: "varchar(80) CHARACTER SET utf8mb4", nullable: false, defaultValue: "Sem Cidade")
           },
           constraints: table =>
           {
