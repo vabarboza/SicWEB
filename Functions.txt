@@ -1,0 +1,12 @@
+﻿DELIMITER $$
+CREATE FUNCTION maloteatrasadouser(nome varchar(50)) RETURNS int
+BEGIN 
+	DECLARE numero int;  
+	SELECT count(*) into numero FROM sicweb.malote where DataRecebido < CURDATE() and Status != 'Recebido' and NomeUser = nome;
+	RETURN numero;
+END$$
+DELIMITER ;
+
+select maloteatrasadouser('Vinicius Araujo');
+
+SET GLOBAL log_bin_trust_function_creators = 1;
