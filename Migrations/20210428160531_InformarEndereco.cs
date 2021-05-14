@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SicWEB.Migrations
-{
-  public partial class InformarEndereco : Migration
-  {
-    protected override void Up(MigrationBuilder migrationBuilder)
-    {
+namespace SicWEB.Migrations {
+  public partial class InformarEndereco : Migration {
+    protected override void Up(MigrationBuilder migrationBuilder) {
       migrationBuilder.AlterColumn<string>(
           name: "Status",
           table: "Malote",
@@ -93,8 +90,7 @@ namespace SicWEB.Migrations
 
       migrationBuilder.CreateTable(
           name: "InformarEndereco",
-          columns: table => new
-          {
+          columns: table => new {
             Id = table.Column<int>(type: "int", nullable: false)
                   .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
             Autos = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
@@ -109,16 +105,14 @@ namespace SicWEB.Migrations
             Data = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
             NomeUser = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false)
           },
-          constraints: table =>
-          {
+          constraints: table => {
             table.PrimaryKey("PK_InformarEndereco", x => x.Id);
             table.UniqueConstraint("UK_InformarEndereco_Contrato", x => x.Contrato);
 
           });
     }
 
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
+    protected override void Down(MigrationBuilder migrationBuilder) {
       migrationBuilder.DropTable(
           name: "InformarEndereco");
 

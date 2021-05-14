@@ -1,54 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using BellinatiCorreio.Views.Home;
+﻿using BellinatiCorreio.Views.Home;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Drawing.Layout;
 using SicWEB.Data;
 using SicWEB.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class InformarOrgaosController : Controller
-  {
+  public class InformarOrgaosController : Controller {
 
     static Conexao c = new Conexao();
     public static string sql = c.ConexaoDados();
 
     private readonly ApplicationDbContext _context;
 
-    public InformarOrgaosController(ApplicationDbContext context)
-    {
+    public InformarOrgaosController(ApplicationDbContext context) {
       _context = context;
     }
 
     // GET: InformarOrgaos
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(await _context.InformarOrgao.ToListAsync());
     }
 
     // GET: InformarOrgaos/Details/5
-    public async Task<IActionResult> Details(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Details(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var informarOrgao = await _context.InformarOrgao
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (informarOrgao == null)
-      {
+      if (informarOrgao == null) {
         return NotFound();
       }
 
@@ -57,8 +49,7 @@ namespace SicWEB.Controllers
     }
 
     // GET: InformarOrgaos/Create
-    public IActionResult Create()
-    {
+    public IActionResult Create() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
@@ -68,15 +59,12 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Oab,Data,NomeUser")] InformarOrgao informarOrgao)
-    {
-      if (_context.InformarOrgao.Any(x => x.Contrato == informarOrgao.Contrato))
-      {
+    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Oab,Data,NomeUser")] InformarOrgao informarOrgao) {
+      if (_context.InformarOrgao.Any(x => x.Contrato == informarOrgao.Contrato)) {
         ModelState.AddModelError("Contrato", "Contrato ja foi cadastrado");
         ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       }
-      if (ModelState.IsValid)
-      {
+      if (ModelState.IsValid) {
         _context.Add(informarOrgao);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "Ok";
@@ -87,16 +75,13 @@ namespace SicWEB.Controllers
     }
 
     // GET: InformarOrgaos/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Edit(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var informarOrgao = await _context.InformarOrgao.FindAsync(id);
-      if (informarOrgao == null)
-      {
+      if (informarOrgao == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -108,28 +93,20 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Oab,Data,NomeUser")] InformarOrgao informarOrgao)
-    {
-      if (id != informarOrgao.Id)
-      {
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Oab,Data,NomeUser")] InformarOrgao informarOrgao) {
+      if (id != informarOrgao.Id) {
         return NotFound();
       }
 
-      if (ModelState.IsValid)
-      {
-        try
-        {
+      if (ModelState.IsValid) {
+        try {
           _context.Update(informarOrgao);
           await _context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!InformarOrgaoExists(informarOrgao.Id))
-          {
+        catch (DbUpdateConcurrencyException) {
+          if (!InformarOrgaoExists(informarOrgao.Id)) {
             return NotFound();
-          }
-          else
-          {
+          } else {
             throw;
           }
         }
@@ -141,17 +118,14 @@ namespace SicWEB.Controllers
     }
 
     // GET: InformarOrgaos/Delete/5
-    public async Task<IActionResult> Delete(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Delete(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var informarOrgao = await _context.InformarOrgao
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (informarOrgao == null)
-      {
+      if (informarOrgao == null) {
         return NotFound();
       }
 
@@ -162,8 +136,7 @@ namespace SicWEB.Controllers
     // POST: InformarOrgaos/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+    public async Task<IActionResult> DeleteConfirmed(int id) {
       var informarOrgao = await _context.InformarOrgao.FindAsync(id);
       _context.InformarOrgao.Remove(informarOrgao);
       await _context.SaveChangesAsync();
@@ -171,15 +144,12 @@ namespace SicWEB.Controllers
       return RedirectToAction(nameof(Index));
     }
 
-    private bool InformarOrgaoExists(int id)
-    {
+    private bool InformarOrgaoExists(int id) {
       return _context.InformarOrgao.Any(e => e.Id == id);
     }
 
-    public FileResult GerarRelatorio(int? id)
-    {
-      using (var doc = new PdfSharpCore.Pdf.PdfDocument())
-      {
+    public FileResult GerarRelatorio(int? id) {
+      using (var doc = new PdfSharpCore.Pdf.PdfDocument()) {
         var page = doc.AddPage();
         page.Size = PdfSharpCore.PageSize.A4;
         page.Orientation = PdfSharpCore.PageOrientation.Portrait;
@@ -209,12 +179,9 @@ namespace SicWEB.Controllers
         string data = DateTime.Now.ToShortDateString();
         MySqlCommand command = new MySqlCommand("SELECT * FROM informarorgao  WHERE  Id = '" + id + "'", con);
         MySqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-          while (reader.Read())
-          {
-            dados.Add(new InformarOrgao()
-            {
+        if (reader.HasRows) {
+          while (reader.Read()) {
+            dados.Add(new InformarOrgao() {
               Autos = reader.GetString("Autos"),
               Contrato = reader.GetInt64("Contrato"),
               Vara = reader.GetString("Vara"),
@@ -229,13 +196,12 @@ namespace SicWEB.Controllers
           Console.WriteLine(data);
         }
 
-        for (int i = 0; i < dados.Count; i++)
-        {
+        for (int i = 0; i < dados.Count; i++) {
 
           //Imagem todo da pagina
           textJustify.Alignment = XParagraphAlignment.Center;
           XImage imagem = XImage.FromFile(logo);
-          grafics.DrawImage(imagem, 200 , 40, 200, 80);
+          grafics.DrawImage(imagem, 200, 40, 200, 80);
 
 
           var topo =
@@ -302,8 +268,7 @@ namespace SicWEB.Controllers
           textJustify.DrawString(enderecoRodape, fonteDetalhes, corFonte, rectenderecoRodape, XStringFormats.TopLeft);
         }
 
-        using (MemoryStream stream = new MemoryStream())
-        {
+        using (MemoryStream stream = new MemoryStream()) {
           var contentType = "application/pdf";
           doc.Save(stream, false);
           var nomeArquivo = "Informar Órgãos para Expedição.pdf";

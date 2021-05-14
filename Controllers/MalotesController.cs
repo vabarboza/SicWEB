@@ -12,40 +12,35 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class MalotesController : Controller
-  {
+  public class MalotesController : Controller {
     static Conexao c = new Conexao();
+    static Mail mail = new Mail();
+
     public static string sql = c.ConexaoDados();
 
     private readonly ApplicationDbContext _context;
 
-    public MalotesController(ApplicationDbContext context)
-    {
+    public MalotesController(ApplicationDbContext context) {
       _context = context;
     }
 
     // GET: Malotes
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(await _context.Malote.ToListAsync());
     }
 
     // GET: Malotes/Details/5
-    public async Task<IActionResult> Details(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Details(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var malote = await _context.Malote
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (malote == null)
-      {
+      if (malote == null) {
         return NotFound();
       }
 
@@ -56,8 +51,7 @@ namespace SicWEB.Controllers
 
     // GET: Malotes/Create
     [Authorize(Policy = "usuario")]
-    public IActionResult Create()
-    {
+    public IActionResult Create() {
       ViewBag.CidadeUser = c.CidadeUser(User.Identity.Name);
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
@@ -69,13 +63,12 @@ namespace SicWEB.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Policy = "usuario")]
-    public async Task<IActionResult> Create([Bind("Id,Numero,Percurso,Lacre,Cidade,Remetente,Status,Atualizacao,DataEnvio,DataRecebido,CidadeSaida,NomeUser")] Malote malote)
-    {
-      if (ModelState.IsValid)
-      {
+    public async Task<IActionResult> Create([Bind("Id,Numero,Percurso,Lacre,Cidade,Remetente,Status,Atualizacao,DataEnvio,DataRecebido,CidadeSaida,NomeUser")] Malote malote) {
+      if (ModelState.IsValid) {
         _context.Add(malote);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "MSG";
+        mail.sendMessage_Click(malote.Status, malote.DataEnvio, malote.Cidade, malote.Numero, malote.Percurso, malote.Lacre, malote.Remetente);
         return RedirectToAction(nameof(Index));
       }
 
@@ -85,16 +78,13 @@ namespace SicWEB.Controllers
 
     [Authorize(Policy = "admin")]
     // GET: Malotes/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Edit(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var malote = await _context.Malote.FindAsync(id);
-      if (malote == null)
-      {
+      if (malote == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -106,28 +96,20 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Numero,Percurso,Lacre,Cidade,Remetente,Status,Atualizacao,DataEnvio,DataRecebido,CidadeSaida,NomeUser")] Malote malote)
-    {
-      if (id != malote.Id)
-      {
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Numero,Percurso,Lacre,Cidade,Remetente,Status,Atualizacao,DataEnvio,DataRecebido,CidadeSaida,NomeUser")] Malote malote) {
+      if (id != malote.Id) {
         return NotFound();
       }
 
-      if (ModelState.IsValid)
-      {
-        try
-        {
+      if (ModelState.IsValid) {
+        try {
           _context.Update(malote);
           await _context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!MaloteExists(malote.Id))
-          {
+        catch (DbUpdateConcurrencyException) {
+          if (!MaloteExists(malote.Id)) {
             return NotFound();
-          }
-          else
-          {
+          } else {
             throw;
           }
         }
@@ -140,17 +122,14 @@ namespace SicWEB.Controllers
 
     [Authorize(Policy = "admin")]
     // GET: Malotes/Delete/5
-    public async Task<IActionResult> Delete(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Delete(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var malote = await _context.Malote
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (malote == null)
-      {
+      if (malote == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -160,8 +139,7 @@ namespace SicWEB.Controllers
     // POST: Malotes/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+    public async Task<IActionResult> DeleteConfirmed(int id) {
       var malote = await _context.Malote.FindAsync(id);
       _context.Malote.Remove(malote);
       await _context.SaveChangesAsync();
@@ -169,15 +147,12 @@ namespace SicWEB.Controllers
       return RedirectToAction(nameof(Index));
     }
 
-    private bool MaloteExists(int id)
-    {
+    private bool MaloteExists(int id) {
       return _context.Malote.Any(e => e.Id == id);
     }
 
-    public FileResult GerarRelatorio()
-    {
-      using (var doc = new PdfSharpCore.Pdf.PdfDocument())
-      {
+    public FileResult GerarRelatorio() {
+      using (var doc = new PdfSharpCore.Pdf.PdfDocument()) {
         var page = doc.AddPage();
         page.Size = PdfSharpCore.PageSize.A4;
         page.Orientation = PdfSharpCore.PageOrientation.Portrait;
@@ -221,12 +196,9 @@ namespace SicWEB.Controllers
         //Npgsql.NpgsqlCommand command = new Npgsql.NpgsqlCommand("SELECT" + '"' + "Remetente" + '"' + " , " + '"' + "Cidade" + "FROM" + '"' + "MaloteModel" + '"', con);
         MySqlCommand command = new MySqlCommand("SELECT * FROM Malote  WHERE  DataEnvio = '" + DateTime.Today.ToString("yyyy/MM/dd") + "'", con);
         MySqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-          while (reader.Read())
-          {
-            alunos.Add(new Malote()
-            {
+        if (reader.HasRows) {
+          while (reader.Read()) {
+            alunos.Add(new Malote() {
               CidadeSaida = reader.GetString("CidadeSaida"),
               Cidade = reader.GetString("Cidade"),
               Lacre = reader.GetInt32("Lacre"),
@@ -239,8 +211,7 @@ namespace SicWEB.Controllers
         }
 
         var alturaItens = 230;
-        for (int i = 0; i < alunos.Count; i++)
-        {
+        for (int i = 0; i < alunos.Count; i++) {
           textFormatter.DrawString(alunos[i].CidadeSaida, fonteOrganizacao, corFonte, new PdfSharpCore.Drawing.XRect(70, alturaItens, page.Width, page.Height));
           textFormatter.DrawString(alunos[i].Cidade, fonteOrganizacao, corFonte, new PdfSharpCore.Drawing.XRect(170, alturaItens, page.Width, page.Height));
           textFormatter.DrawString(alunos[i].Lacre.ToString(), fonteOrganizacao, corFonte, new PdfSharpCore.Drawing.XRect(270, alturaItens, page.Width, page.Height));
@@ -263,8 +234,7 @@ namespace SicWEB.Controllers
           new PdfSharpCore.Drawing.XRect(360, 770, page.Width, page.Height));
 
 
-        using (MemoryStream stream = new MemoryStream())
-        {
+        using (MemoryStream stream = new MemoryStream()) {
           var contentType = "application/pdf";
           doc.Save(stream, false);
           var nomeArquivo = "Protocolo do Malote: " + DateTime.Today.ToString("dd/MM/yyyy") + ".pdf";

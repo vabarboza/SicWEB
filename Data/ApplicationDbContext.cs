@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SicWEB.Models;
 
-namespace SicWEB.Data
-{
-  public class ApplicationDbContext : IdentityDbContext
-  {
+namespace SicWEB.Data {
+  public class ApplicationDbContext : IdentityDbContext {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
+        : base(options) {
     }
     public DbSet<SicWEB.Models.FielDepositario> FielDepositario { get; set; }
     public DbSet<SicWEB.Models.CitacaoCarta> CitacaoCarta { get; set; }

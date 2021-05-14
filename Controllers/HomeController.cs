@@ -3,26 +3,22 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SicWEB.Models;
-using System.Net;
 using System.Diagnostics;
+using System.Net;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class HomeController : Controller
-  {
+  public class HomeController : Controller {
     static Conexao c = new Conexao();
     public static string sql = c.ConexaoDados();
 
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
-    {
+    public HomeController(ILogger<HomeController> logger) {
       _logger = logger;
     }
 
-    public IActionResult Index()
-    {
+    public IActionResult Index() {
       ViewBag.TotalMalote = c.ContarMalote();
       ViewBag.TotalMaringa = c.ContarMaringa();
       ViewBag.TotalCuritiba = c.ContarCuritiba();
@@ -47,8 +43,7 @@ namespace SicWEB.Controllers
       string host = Dns.GetHostName();
       IPAddress[] ips;
       ips = Dns.GetHostAddresses(host);
-      foreach (IPAddress ip in ips)
-      {
+      foreach (IPAddress ip in ips) {
         ViewBag.Ip = ip; ;
       }
 
@@ -56,8 +51,7 @@ namespace SicWEB.Controllers
       return View();
     }
 
-    public IActionResult Privacy()
-    {
+    public IActionResult Privacy() {
       ViewBag.TotalMalote = c.ContarMalote();
       ViewBag.TotalMaringa = c.ContarMaringa();
       ViewBag.TotalCuritiba = c.ContarCuritiba();
@@ -82,8 +76,7 @@ namespace SicWEB.Controllers
       string host = Dns.GetHostName();
       IPAddress[] ips;
       ips = Dns.GetHostAddresses(host);
-      foreach (IPAddress ip in ips)
-      {
+      foreach (IPAddress ip in ips) {
         ViewBag.Ip = ip; ;
       }
 
@@ -92,10 +85,10 @@ namespace SicWEB.Controllers
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
+    public IActionResult Error() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
   }
 }

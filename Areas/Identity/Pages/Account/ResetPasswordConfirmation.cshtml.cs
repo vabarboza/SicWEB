@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SicWEB.Areas.Identity.Pages.Account
-{
+namespace SicWEB.Areas.Identity.Pages.Account {
   [AllowAnonymous]
-  public class ResetPasswordConfirmationModel : PageModel
-  {
-    public void OnGet()
-    {
+  public class ResetPasswordConfirmationModel : PageModel {
+    public void OnGet() {
 
     }
   }

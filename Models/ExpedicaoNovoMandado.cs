@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SicWEB.Models
-{
-  public class ExpedicaoNovoMandado
-  {
+namespace SicWEB.Models {
+  public class ExpedicaoNovoMandado {
     //Expedição de Novo Mandado
     public int Id { get; set; }
 

@@ -13,40 +13,33 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class InformarEnderecoController : Controller
-  {
+  public class InformarEnderecoController : Controller {
     static Conexao c = new Conexao();
     public static string sql = c.ConexaoDados();
 
     private readonly ApplicationDbContext _context;
 
-    public InformarEnderecoController(ApplicationDbContext context)
-    {
+    public InformarEnderecoController(ApplicationDbContext context) {
       _context = context;
     }
 
     // GET: InformarEndereco
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(await _context.InformarEndereco.ToListAsync());
     }
 
     // GET: InformarEndereco/Details/5
-    public async Task<IActionResult> Details(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Details(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var informarEndereco = await _context.InformarEndereco
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (informarEndereco == null)
-      {
+      if (informarEndereco == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -55,8 +48,7 @@ namespace SicWEB.Controllers
 
     // GET: InformarEndereco/Create
     [Authorize(Policy = "usuario")]
-    public IActionResult Create()
-    {
+    public IActionResult Create() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
@@ -67,15 +59,12 @@ namespace SicWEB.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Policy = "usuario")]
-    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] InformarEndereco informarEndereco)
-    {
-      if (_context.InformarEndereco.Any(x => x.Contrato == informarEndereco.Contrato))
-      {
+    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] InformarEndereco informarEndereco) {
+      if (_context.InformarEndereco.Any(x => x.Contrato == informarEndereco.Contrato)) {
         ModelState.AddModelError("Contrato", "Contrato ja foi cadastrado");
         ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       }
-      if (ModelState.IsValid)
-      {
+      if (ModelState.IsValid) {
         _context.Add(informarEndereco);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "Ok";
@@ -87,16 +76,13 @@ namespace SicWEB.Controllers
 
     // GET: InformarEndereco/Edit/5
     [Authorize(Policy = "admin")]
-    public async Task<IActionResult> Edit(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Edit(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var informarEndereco = await _context.InformarEndereco.FindAsync(id);
-      if (informarEndereco == null)
-      {
+      if (informarEndereco == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -109,28 +95,20 @@ namespace SicWEB.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Policy = "admin")]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] InformarEndereco informarEndereco)
-    {
-      if (id != informarEndereco.Id)
-      {
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] InformarEndereco informarEndereco) {
+      if (id != informarEndereco.Id) {
         return NotFound();
       }
 
-      if (ModelState.IsValid)
-      {
-        try
-        {
+      if (ModelState.IsValid) {
+        try {
           _context.Update(informarEndereco);
           await _context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!InformarEnderecoExists(informarEndereco.Id))
-          {
+        catch (DbUpdateConcurrencyException) {
+          if (!InformarEnderecoExists(informarEndereco.Id)) {
             return NotFound();
-          }
-          else
-          {
+          } else {
             throw;
           }
         }
@@ -143,17 +121,14 @@ namespace SicWEB.Controllers
 
     // GET: InformarEndereco/Delete/5
     [Authorize(Policy = "admin")]
-    public async Task<IActionResult> Delete(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Delete(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var informarEndereco = await _context.InformarEndereco
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (informarEndereco == null)
-      {
+      if (informarEndereco == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -164,8 +139,7 @@ namespace SicWEB.Controllers
     [Authorize(Policy = "admin")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+    public async Task<IActionResult> DeleteConfirmed(int id) {
       var informarEndereco = await _context.InformarEndereco.FindAsync(id);
       _context.InformarEndereco.Remove(informarEndereco);
       await _context.SaveChangesAsync();
@@ -173,15 +147,12 @@ namespace SicWEB.Controllers
       return RedirectToAction(nameof(Index));
     }
 
-    private bool InformarEnderecoExists(int id)
-    {
+    private bool InformarEnderecoExists(int id) {
       return _context.InformarEndereco.Any(e => e.Id == id);
     }
 
-    public FileResult GerarRelatorio(int? id)
-    {
-      using (var doc = new PdfSharpCore.Pdf.PdfDocument())
-      {
+    public FileResult GerarRelatorio(int? id) {
+      using (var doc = new PdfSharpCore.Pdf.PdfDocument()) {
         var page = doc.AddPage();
         page.Size = PdfSharpCore.PageSize.A4;
         page.Orientation = PdfSharpCore.PageOrientation.Portrait;
@@ -211,12 +182,9 @@ namespace SicWEB.Controllers
         string data = DateTime.Now.ToShortDateString();
         MySqlCommand command = new MySqlCommand("SELECT * FROM informarendereco  WHERE  Id = '" + id + "'", con);
         MySqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-          while (reader.Read())
-          {
-            dados.Add(new InformarEndereco()
-            {
+        if (reader.HasRows) {
+          while (reader.Read()) {
+            dados.Add(new InformarEndereco() {
               Autos = reader.GetString("Autos"),
               Contrato = reader.GetInt64("Contrato"),
               Vara = reader.GetString("Vara"),
@@ -232,8 +200,7 @@ namespace SicWEB.Controllers
           Console.WriteLine(data);
         }
 
-        for (int i = 0; i < dados.Count; i++)
-        {
+        for (int i = 0; i < dados.Count; i++) {
 
           //Imagem todo da pagina
           XImage imagem = XImage.FromFile(logo);
@@ -298,8 +265,7 @@ namespace SicWEB.Controllers
           textJustify.DrawString(enderecoRodape, fonteDetalhes, corFonte, rectenderecoRodape, XStringFormats.TopLeft);
         }
 
-        using (MemoryStream stream = new MemoryStream())
-        {
+        using (MemoryStream stream = new MemoryStream()) {
           var contentType = "application/pdf";
           doc.Save(stream, false);
           var nomeArquivo = "Informar Endereço.pdf";

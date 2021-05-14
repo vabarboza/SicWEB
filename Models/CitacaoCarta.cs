@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SicWEB.Models
-{
-  public class CitacaoCarta
-  {
+namespace SicWEB.Models {
+  public class CitacaoCarta {
     //CITAÇÂO POR CARTA
     public int Id { get; set; }
 

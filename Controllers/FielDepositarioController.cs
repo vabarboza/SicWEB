@@ -13,40 +13,33 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class FielDepositarioController : Controller
-  {
+  public class FielDepositarioController : Controller {
     static Conexao c = new Conexao();
     public static string sql = c.ConexaoDados();
 
     private readonly ApplicationDbContext _context;
 
-    public FielDepositarioController(ApplicationDbContext context)
-    {
+    public FielDepositarioController(ApplicationDbContext context) {
       _context = context;
     }
 
     // GET: FielDepositario
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(await _context.FielDepositario.ToListAsync());
     }
 
     // GET: FielDepositario/Details/5
-    public async Task<IActionResult> Details(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Details(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var fielDepositario = await _context.FielDepositario
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (fielDepositario == null)
-      {
+      if (fielDepositario == null) {
         return NotFound();
       }
 
@@ -56,8 +49,7 @@ namespace SicWEB.Controllers
 
     // GET: FielDepositario/Create
     [Authorize(Policy = "usuario")]
-    public IActionResult Create()
-    {
+    public IActionResult Create() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
@@ -68,15 +60,12 @@ namespace SicWEB.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Policy = "usuario")]
-    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Fiel,RG,Telefone,Oab,Data,NomeUser")] FielDepositario fielDepositario)
-    {
-      if (_context.FielDepositario.Any(x => x.Contrato == fielDepositario.Contrato))
-      {
+    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Fiel,RG,Telefone,Oab,Data,NomeUser")] FielDepositario fielDepositario) {
+      if (_context.FielDepositario.Any(x => x.Contrato == fielDepositario.Contrato)) {
         ModelState.AddModelError("Contrato", "Contrato ja foi cadastrado");
         ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       }
-      if (ModelState.IsValid)
-      {
+      if (ModelState.IsValid) {
         _context.Add(fielDepositario);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "Ok";
@@ -90,16 +79,13 @@ namespace SicWEB.Controllers
 
     [Authorize(Policy = "admin")]
     // GET: FielDepositario/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Edit(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var fielDepositario = await _context.FielDepositario.FindAsync(id);
-      if (fielDepositario == null)
-      {
+      if (fielDepositario == null) {
         return NotFound();
       }
 
@@ -112,28 +98,20 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Fiel,RG,Telefone,Oab,Data,NomeUser")] FielDepositario fielDepositario)
-    {
-      if (id != fielDepositario.Id)
-      {
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Fiel,RG,Telefone,Oab,Data,NomeUser")] FielDepositario fielDepositario) {
+      if (id != fielDepositario.Id) {
         return NotFound();
       }
 
-      if (ModelState.IsValid)
-      {
-        try
-        {
+      if (ModelState.IsValid) {
+        try {
           _context.Update(fielDepositario);
           await _context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!FielDepositarioExists(fielDepositario.Id))
-          {
+        catch (DbUpdateConcurrencyException) {
+          if (!FielDepositarioExists(fielDepositario.Id)) {
             return NotFound();
-          }
-          else
-          {
+          } else {
             throw;
           }
         }
@@ -148,17 +126,14 @@ namespace SicWEB.Controllers
 
     [Authorize(Policy = "admin")]
     // GET: FielDepositario/Delete/5
-    public async Task<IActionResult> Delete(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Delete(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var fielDepositario = await _context.FielDepositario
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (fielDepositario == null)
-      {
+      if (fielDepositario == null) {
         return NotFound();
       }
 
@@ -169,8 +144,7 @@ namespace SicWEB.Controllers
     // POST: FielDepositario/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+    public async Task<IActionResult> DeleteConfirmed(int id) {
       var fielDepositario = await _context.FielDepositario.FindAsync(id);
       _context.FielDepositario.Remove(fielDepositario);
       await _context.SaveChangesAsync();
@@ -178,15 +152,12 @@ namespace SicWEB.Controllers
       return RedirectToAction(nameof(Index));
     }
 
-    private bool FielDepositarioExists(int id)
-    {
+    private bool FielDepositarioExists(int id) {
       return _context.FielDepositario.Any(e => e.Id == id);
     }
 
-    public FileResult GerarRelatorio(int? id)
-    {
-      using (var doc = new PdfSharpCore.Pdf.PdfDocument())
-      {
+    public FileResult GerarRelatorio(int? id) {
+      using (var doc = new PdfSharpCore.Pdf.PdfDocument()) {
         var page = doc.AddPage();
         page.Size = PdfSharpCore.PageSize.A4;
         page.Orientation = PdfSharpCore.PageOrientation.Portrait;
@@ -216,12 +187,9 @@ namespace SicWEB.Controllers
         string data = DateTime.Now.ToShortDateString();
         MySqlCommand command = new MySqlCommand("SELECT * FROM fieldepositario  WHERE  Id = '" + id + "'", con);
         MySqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-          while (reader.Read())
-          {
-            dados.Add(new FielDepositario()
-            {
+        if (reader.HasRows) {
+          while (reader.Read()) {
+            dados.Add(new FielDepositario() {
               Autos = reader.GetString("Autos"),
               Contrato = reader.GetInt32("Contrato"),
               Vara = reader.GetString("Vara"),
@@ -239,8 +207,7 @@ namespace SicWEB.Controllers
           Console.WriteLine(data);
         }
 
-        for (int i = 0; i < dados.Count; i++)
-        {
+        for (int i = 0; i < dados.Count; i++) {
 
           //Imagem todo da pagina
           XImage imagem = XImage.FromFile(logo);
@@ -305,8 +272,7 @@ namespace SicWEB.Controllers
           textJustify.DrawString(enderecoRodape, fonteDetalhes, corFonte, rectenderecoRodape, XStringFormats.TopLeft);
         }
 
-        using (MemoryStream stream = new MemoryStream())
-        {
+        using (MemoryStream stream = new MemoryStream()) {
           var contentType = "application/pdf";
           doc.Save(stream, false);
           var nomeArquivo = "Fiel depositario.pdf";

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SicWEB.Models
-{
-  public class ConversaoExecucao
-  {
+namespace SicWEB.Models {
+  public class ConversaoExecucao {
     public int Id { get; set; }
 
     [Display(Name = "Autos:")]

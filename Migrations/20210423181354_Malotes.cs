@@ -2,16 +2,12 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace SicWEB.Migrations
-{
-  public partial class Malotes : Migration
-  {
-    protected override void Up(MigrationBuilder migrationBuilder)
-    {
+namespace SicWEB.Migrations {
+  public partial class Malotes : Migration {
+    protected override void Up(MigrationBuilder migrationBuilder) {
       migrationBuilder.CreateTable(
           name: "Malote",
-          columns: table => new
-          {
+          columns: table => new {
             Id = table.Column<int>(type: "int", nullable: false)
                   .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
             Numero = table.Column<int>(type: "int", nullable: false),
@@ -25,14 +21,12 @@ namespace SicWEB.Migrations
             DataRecebido = table.Column<DateTime>(type: "datetime(6)", nullable: false),
             CidadeSaida = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
           },
-          constraints: table =>
-          {
+          constraints: table => {
             table.PrimaryKey("PK_Malote", x => x.Id);
           });
     }
 
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
+    protected override void Down(MigrationBuilder migrationBuilder) {
       migrationBuilder.DropTable(
           name: "Malote");
     }

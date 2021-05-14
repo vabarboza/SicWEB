@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SicWEB.Models
-{
-  public class Malote
-  {
+namespace SicWEB.Models {
+  public class Malote {
     public int Id { get; set; }
 
     [Display(Name = "Numero do Malote:")]

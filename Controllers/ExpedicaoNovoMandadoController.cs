@@ -13,39 +13,32 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class ExpedicaoNovoMandadoController : Controller
-  {
+  public class ExpedicaoNovoMandadoController : Controller {
     static Conexao c = new Conexao();
     public static string sql = c.ConexaoDados();
     private readonly ApplicationDbContext _context;
 
-    public ExpedicaoNovoMandadoController(ApplicationDbContext context)
-    {
+    public ExpedicaoNovoMandadoController(ApplicationDbContext context) {
       _context = context;
     }
 
     // GET: ExpedicaoNovoMandado
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(await _context.ExpedicaoNovoMandado.ToListAsync());
     }
 
     // GET: ExpedicaoNovoMandado/Details/5
-    public async Task<IActionResult> Details(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Details(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var expedicaoNovoMandado = await _context.ExpedicaoNovoMandado
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (expedicaoNovoMandado == null)
-      {
+      if (expedicaoNovoMandado == null) {
         return NotFound();
       }
 
@@ -55,8 +48,7 @@ namespace SicWEB.Controllers
 
     // GET: ExpedicaoNovoMandado/Create
     [Authorize(Policy = "usuario")]
-    public IActionResult Create()
-    {
+    public IActionResult Create() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
@@ -67,15 +59,12 @@ namespace SicWEB.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Policy = "usuario")]
-    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] ExpedicaoNovoMandado expedicaoNovoMandado)
-    {
-      if (_context.ExpedicaoNovoMandado.Any(x => x.Contrato == expedicaoNovoMandado.Contrato))
-      {
+    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] ExpedicaoNovoMandado expedicaoNovoMandado) {
+      if (_context.ExpedicaoNovoMandado.Any(x => x.Contrato == expedicaoNovoMandado.Contrato)) {
         ModelState.AddModelError("Contrato", "Contrato ja foi cadastrado");
         ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       }
-      if (ModelState.IsValid)
-      {
+      if (ModelState.IsValid) {
         _context.Add(expedicaoNovoMandado);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "Ok";
@@ -88,16 +77,13 @@ namespace SicWEB.Controllers
 
     [Authorize(Policy = "admin")]
     // GET: ExpedicaoNovoMandado/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Edit(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var expedicaoNovoMandado = await _context.ExpedicaoNovoMandado.FindAsync(id);
-      if (expedicaoNovoMandado == null)
-      {
+      if (expedicaoNovoMandado == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -109,28 +95,20 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] ExpedicaoNovoMandado expedicaoNovoMandado)
-    {
-      if (id != expedicaoNovoMandado.Id)
-      {
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] ExpedicaoNovoMandado expedicaoNovoMandado) {
+      if (id != expedicaoNovoMandado.Id) {
         return NotFound();
       }
 
-      if (ModelState.IsValid)
-      {
-        try
-        {
+      if (ModelState.IsValid) {
+        try {
           _context.Update(expedicaoNovoMandado);
           await _context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!ExpedicaoNovoMandadoExists(expedicaoNovoMandado.Id))
-          {
+        catch (DbUpdateConcurrencyException) {
+          if (!ExpedicaoNovoMandadoExists(expedicaoNovoMandado.Id)) {
             return NotFound();
-          }
-          else
-          {
+          } else {
             throw;
           }
         }
@@ -144,17 +122,14 @@ namespace SicWEB.Controllers
 
     [Authorize(Policy = "admin")]
     // GET: ExpedicaoNovoMandado/Delete/5
-    public async Task<IActionResult> Delete(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Delete(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var expedicaoNovoMandado = await _context.ExpedicaoNovoMandado
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (expedicaoNovoMandado == null)
-      {
+      if (expedicaoNovoMandado == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -164,8 +139,7 @@ namespace SicWEB.Controllers
     // POST: ExpedicaoNovoMandado/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+    public async Task<IActionResult> DeleteConfirmed(int id) {
       var expedicaoNovoMandado = await _context.ExpedicaoNovoMandado.FindAsync(id);
       _context.ExpedicaoNovoMandado.Remove(expedicaoNovoMandado);
       await _context.SaveChangesAsync();
@@ -173,15 +147,12 @@ namespace SicWEB.Controllers
       return RedirectToAction(nameof(Index));
     }
 
-    private bool ExpedicaoNovoMandadoExists(int id)
-    {
+    private bool ExpedicaoNovoMandadoExists(int id) {
       return _context.ExpedicaoNovoMandado.Any(e => e.Id == id);
     }
 
-    public FileResult GerarRelatorio(int? id)
-    {
-      using (var doc = new PdfSharpCore.Pdf.PdfDocument())
-      {
+    public FileResult GerarRelatorio(int? id) {
+      using (var doc = new PdfSharpCore.Pdf.PdfDocument()) {
         var page = doc.AddPage();
         page.Size = PdfSharpCore.PageSize.A4;
         page.Orientation = PdfSharpCore.PageOrientation.Portrait;
@@ -211,12 +182,9 @@ namespace SicWEB.Controllers
         string data = DateTime.Now.ToShortDateString();
         MySqlCommand command = new MySqlCommand("SELECT * FROM expedicaonovomandado  WHERE  Id = '" + id + "'", con);
         MySqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-          while (reader.Read())
-          {
-            dados.Add(new ExpedicaoNovoMandado()
-            {
+        if (reader.HasRows) {
+          while (reader.Read()) {
+            dados.Add(new ExpedicaoNovoMandado() {
               Autos = reader.GetString("Autos"),
               Contrato = reader.GetInt64("Contrato"),
               Vara = reader.GetString("Vara"),
@@ -232,8 +200,7 @@ namespace SicWEB.Controllers
           Console.WriteLine(data);
         }
 
-        for (int i = 0; i < dados.Count; i++)
-        {
+        for (int i = 0; i < dados.Count; i++) {
 
           //Imagem todo da pagina
           XImage imagem = XImage.FromFile(logo);
@@ -295,8 +262,7 @@ namespace SicWEB.Controllers
           textJustify.DrawString(enderecoRodape, fonteDetalhes, corFonte, rectenderecoRodape, XStringFormats.TopLeft);
         }
 
-        using (MemoryStream stream = new MemoryStream())
-        {
+        using (MemoryStream stream = new MemoryStream()) {
           var contentType = "application/pdf";
           doc.Save(stream, false);
           var nomeArquivo = "Expedicao de Mandado.pdf";

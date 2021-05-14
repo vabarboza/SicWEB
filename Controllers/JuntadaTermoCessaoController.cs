@@ -1,52 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using BellinatiCorreio.Views.Home;
+﻿using BellinatiCorreio.Views.Home;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Drawing.Layout;
 using SicWEB.Data;
 using SicWEB.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace SicWEB.Controllers
-{
+namespace SicWEB.Controllers {
   [Authorize]
-  public class JuntadaTermoCessaoController : Controller
-  {
+  public class JuntadaTermoCessaoController : Controller {
     static Conexao c = new Conexao();
     public static string sql = c.ConexaoDados();
     private readonly ApplicationDbContext _context;
 
-    public JuntadaTermoCessaoController(ApplicationDbContext context)
-    {
+    public JuntadaTermoCessaoController(ApplicationDbContext context) {
       _context = context;
     }
 
     // GET: JuntadaTermoCessao
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View(await _context.JuntadaTermoCessao.ToListAsync());
     }
 
     // GET: JuntadaTermoCessao/Details/5
-    public async Task<IActionResult> Details(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Details(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var juntadaTermoCessao = await _context.JuntadaTermoCessao
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (juntadaTermoCessao == null)
-      {
+      if (juntadaTermoCessao == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -54,8 +46,7 @@ namespace SicWEB.Controllers
     }
 
     // GET: JuntadaTermoCessao/Create
-    public IActionResult Create()
-    {
+    public IActionResult Create() {
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       return View();
     }
@@ -65,15 +56,12 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,BancoCedente,Reu,Oab,Data,NomeUser")] JuntadaTermoCessao juntadaTermoCessao)
-    {
-      if (_context.JuntadaTermoCessao.Any(x => x.Contrato == juntadaTermoCessao.Contrato))
-      {
+    public async Task<IActionResult> Create([Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,BancoCedente,Reu,Oab,Data,NomeUser")] JuntadaTermoCessao juntadaTermoCessao) {
+      if (_context.JuntadaTermoCessao.Any(x => x.Contrato == juntadaTermoCessao.Contrato)) {
         ModelState.AddModelError("Contrato", "Contrato ja foi cadastrado");
         ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
       }
-      if (ModelState.IsValid)
-      {
+      if (ModelState.IsValid) {
         _context.Add(juntadaTermoCessao);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "Ok";
@@ -83,16 +71,13 @@ namespace SicWEB.Controllers
     }
 
     // GET: JuntadaTermoCessao/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Edit(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var juntadaTermoCessao = await _context.JuntadaTermoCessao.FindAsync(id);
-      if (juntadaTermoCessao == null)
-      {
+      if (juntadaTermoCessao == null) {
         return NotFound();
       }
       ViewBag.NomeUser = c.NomeUser(User.Identity.Name);
@@ -104,28 +89,20 @@ namespace SicWEB.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,BancoCedente,Reu,Oab,Data,NomeUser")] JuntadaTermoCessao juntadaTermoCessao)
-    {
-      if (id != juntadaTermoCessao.Id)
-      {
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,BancoCedente,Reu,Oab,Data,NomeUser")] JuntadaTermoCessao juntadaTermoCessao) {
+      if (id != juntadaTermoCessao.Id) {
         return NotFound();
       }
 
-      if (ModelState.IsValid)
-      {
-        try
-        {
+      if (ModelState.IsValid) {
+        try {
           _context.Update(juntadaTermoCessao);
           await _context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!JuntadaTermoCessaoExists(juntadaTermoCessao.Id))
-          {
+        catch (DbUpdateConcurrencyException) {
+          if (!JuntadaTermoCessaoExists(juntadaTermoCessao.Id)) {
             return NotFound();
-          }
-          else
-          {
+          } else {
             throw;
           }
         }
@@ -137,17 +114,14 @@ namespace SicWEB.Controllers
     }
 
     // GET: JuntadaTermoCessao/Delete/5
-    public async Task<IActionResult> Delete(int? id)
-    {
-      if (id == null)
-      {
+    public async Task<IActionResult> Delete(int? id) {
+      if (id == null) {
         return NotFound();
       }
 
       var juntadaTermoCessao = await _context.JuntadaTermoCessao
           .FirstOrDefaultAsync(m => m.Id == id);
-      if (juntadaTermoCessao == null)
-      {
+      if (juntadaTermoCessao == null) {
         return NotFound();
       }
 
@@ -158,8 +132,7 @@ namespace SicWEB.Controllers
     // POST: JuntadaTermoCessao/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
+    public async Task<IActionResult> DeleteConfirmed(int id) {
       var juntadaTermoCessao = await _context.JuntadaTermoCessao.FindAsync(id);
       _context.JuntadaTermoCessao.Remove(juntadaTermoCessao);
       await _context.SaveChangesAsync();
@@ -167,15 +140,12 @@ namespace SicWEB.Controllers
       return RedirectToAction(nameof(Index));
     }
 
-    private bool JuntadaTermoCessaoExists(int id)
-    {
+    private bool JuntadaTermoCessaoExists(int id) {
       return _context.JuntadaTermoCessao.Any(e => e.Id == id);
     }
 
-    public FileResult GerarRelatorio(int? id)
-    {
-      using (var doc = new PdfSharpCore.Pdf.PdfDocument())
-      {
+    public FileResult GerarRelatorio(int? id) {
+      using (var doc = new PdfSharpCore.Pdf.PdfDocument()) {
         var page = doc.AddPage();
         page.Size = PdfSharpCore.PageSize.A4;
         page.Orientation = PdfSharpCore.PageOrientation.Portrait;
@@ -205,12 +175,9 @@ namespace SicWEB.Controllers
         string data = DateTime.Now.ToShortDateString();
         MySqlCommand command = new MySqlCommand("SELECT * FROM juntadatermocessao  WHERE  Id = '" + id + "'", con);
         MySqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-          while (reader.Read())
-          {
-            dados.Add(new JuntadaTermoCessao()
-            {
+        if (reader.HasRows) {
+          while (reader.Read()) {
+            dados.Add(new JuntadaTermoCessao() {
               Autos = reader.GetString("Autos"),
               Contrato = reader.GetInt64("Contrato"),
               Vara = reader.GetString("Vara"),
@@ -226,8 +193,7 @@ namespace SicWEB.Controllers
           Console.WriteLine(data);
         }
 
-        for (int i = 0; i < dados.Count; i++)
-        {
+        for (int i = 0; i < dados.Count; i++) {
 
           //Imagem todo da pagina
           XImage imagem = XImage.FromFile(logo);
@@ -300,8 +266,7 @@ namespace SicWEB.Controllers
           textJustify.DrawString(enderecoRodape, fonteDetalhes, corFonte, rectenderecoRodape, XStringFormats.TopLeft);
         }
 
-        using (MemoryStream stream = new MemoryStream())
-        {
+        using (MemoryStream stream = new MemoryStream()) {
           var contentType = "application/pdf";
           doc.Save(stream, false);
           var nomeArquivo = "Juntada Termo de Cessão.pdf";

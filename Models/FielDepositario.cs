@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SicWEB.Models
-{
-  public class FielDepositario
-  {
+namespace SicWEB.Models {
+  public class FielDepositario {
     //Fiel depositario
     public int Id { get; set; }
     [Display(Name = "Autos:")]
