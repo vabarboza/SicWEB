@@ -37,7 +37,6 @@ namespace SicWEB.Controllers {
 
       string nomeUser = c.NomeUser(User.Identity.Name);
       ViewBag.MaloteUser = c.MaloteUsuario(nomeUser);
-      ViewBag.NotifiUser = c.ContarNotificacaoUser(nomeUser);
       ViewBag.MaloteAtrasadoUser = c.MaloteAtrasadoUser(nomeUser);
 
       string host = Dns.GetHostName();
@@ -70,7 +69,6 @@ namespace SicWEB.Controllers {
 
       string nomeUser = c.NomeUser(User.Identity.Name);
       ViewBag.MaloteUser = c.MaloteUsuario(nomeUser);
-      ViewBag.NotifiUser = c.ContarNotificacaoUser(nomeUser);
       ViewBag.MaloteAtrasadoUser = c.MaloteAtrasadoUser(nomeUser);
 
       string host = Dns.GetHostName();

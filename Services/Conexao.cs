@@ -199,55 +199,37 @@ namespace BellinatiCorreio.Views.Home {
       return nome;
     }
 
+    //Busca Cidade do usuario pelo CPF
+    public string EmailUser(string nome) {
+      using (var conexao = new MySqlConnection()) {
+
+        conexao.ConnectionString = ConexaoDados();
+        conexao.Open();
+
+        using (var comando = new MySqlCommand()) {
+          comando.Connection = conexao;
+          comando.CommandText = string.Format("select emailuser('" + nome + "')");
+          nome = (string)comando.ExecuteScalar();
+        }
+      }
+      return nome;
+    }
 
     //Contador de notificações
     public int ContarNotificacao() {
-      var informarEndereco = 0;
-      var fielDepositario = 0;
-      var expedicaoNovoMandado = 0;
-      var citacaoCarta = 0;
-      var informarOrgaos = 0;
-      var juntadaTermo = 0;
-      var conversaoExecucao = 0;
-      var conversaoExecucaoItau = 0;
-
+      int count;
       using (var conexao = new MySqlConnection()) {
         conexao.ConnectionString = ConexaoDados();
         conexao.Open();
 
         using (var comando = new MySqlCommand()) {
           comando.Connection = conexao;
-          comando.CommandText = string.Format("Select count(*) from informarendereco");
-          informarEndereco = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from fieldepositario");
-          fielDepositario = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from expedicaonovomandado");
-          expedicaoNovoMandado = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from citacaocarta");
-          citacaoCarta = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from informarorgao");
-          informarOrgaos = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from juntadatermocessao");
-          juntadaTermo = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from conversaoexecucao");
-          conversaoExecucao = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from conversaoexecucaoitau");
-          conversaoExecucaoItau = (int)(long)comando.ExecuteScalar();
+          comando.CommandText = string.Format("select conta_notificacao()");
+          count = (int)comando.ExecuteScalar();
         }
       }
-      var count =
-        informarEndereco + fielDepositario + expedicaoNovoMandado + citacaoCarta + informarOrgaos +
-        juntadaTermo + conversaoExecucao + conversaoExecucaoItau;
       return count;
     }
-
 
     //Contador de notificações
     public int ContarNotificacaoCitacao() {
@@ -411,56 +393,6 @@ namespace BellinatiCorreio.Views.Home {
       }
       return count;
     }
-
-
-    //Contador de notificações
-    public int ContarNotificacaoUser(string nome) {
-      var informarEndereco = 0;
-      var fielDepositario = 0;
-      var expedicaoNovoMandado = 0;
-      var citacaoCarta = 0;
-      var informarOrgaos = 0;
-      var juntadaTermo = 0;
-      var conversaoExecucao = 0;
-      var conversaoExecucaoItau = 0;
-
-      using (var conexao = new MySqlConnection()) {
-        conexao.ConnectionString = ConexaoDados();
-        conexao.Open();
-
-        using (var comando = new MySqlCommand()) {
-          comando.Connection = conexao;
-          comando.CommandText = string.Format("Select count(*) from informarendereco where NomeUser = '" + nome + "'");
-          informarEndereco = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from fieldepositario where NomeUser = '" + nome + "'");
-          fielDepositario = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from expedicaonovomandado where NomeUser = '" + nome + "'");
-          expedicaoNovoMandado = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from citacaocarta where NomeUser = '" + nome + "'");
-          citacaoCarta = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from informarorgao where NomeUser = '" + nome + "'");
-          informarOrgaos = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from juntadatermocessao where NomeUser = '" + nome + "'");
-          juntadaTermo = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from conversaoexecucao where NomeUser = '" + nome + "'");
-          conversaoExecucao = (int)(long)comando.ExecuteScalar();
-
-          comando.CommandText = string.Format("Select count(*) from conversaoexecucaoitau where NomeUser = '" + nome + "'");
-          conversaoExecucaoItau = (int)(long)comando.ExecuteScalar();
-        }
-      }
-      var count =
-        informarEndereco + fielDepositario + expedicaoNovoMandado + citacaoCarta + informarOrgaos +
-        juntadaTermo + conversaoExecucao + conversaoExecucaoItau;
-      return count;
-    }
-
 
     //Contador de malotes atrasados
     public int MaloteAtrasadoUser(string nome) {

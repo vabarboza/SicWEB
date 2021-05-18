@@ -5,8 +5,7 @@
   ViewData["Title"] = "Log in";
 }
 
-@if (TempData["mensagemErro"] != null)
-{
+@if (TempData["mensagemErro"] != null) {
   <script type="text/javascript">
     window.onload = function () {
       toastr.error('Erro ao efetuar login, usuário ou senha incorreto!', 'Erro ao efetuar login.', {
@@ -60,7 +59,7 @@
           <div class="form-group ml-3 mr-3">
             <!-- Material input -->
             <div class="md-form">
-              <input asp-for="Input.Email" class="form-control" required />
+              <input asp-for="Input.Email" class="form-control" onkeypress='validate(event)' required />
               <label for="form1">Usuario</label>
             </div>
           </div>
@@ -100,5 +99,24 @@
     $(window).on('load', function () {
       $('#mdb-preloader').delay(1000).fadeOut(300);
     });
+  </script>
+
+  <script>
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      // Handle paste
+      if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+      } else {
+        // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+      }
+      var regex = /[0-9]|\./;
+      if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
   </script>
 }

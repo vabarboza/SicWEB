@@ -118,7 +118,7 @@ namespace SicWEB.Controllers {
       return View(citacaoCarta);
     }
 
-    [Authorize(Policy = "admin")]
+    [Authorize(Policy = "super")]
     // GET: CitacaoCarta/Delete/5
     public async Task<IActionResult> Delete(int? id) {
       if (id == null) {
@@ -136,6 +136,7 @@ namespace SicWEB.Controllers {
     }
 
     // POST: CitacaoCarta/Delete/5
+    [Authorize(Policy = "super")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id) {

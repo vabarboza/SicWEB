@@ -68,7 +68,8 @@ namespace SicWEB.Controllers {
         _context.Add(malote);
         await _context.SaveChangesAsync();
         TempData["mensagemCreate"] = "MSG";
-        mail.sendMessage_Click(malote.Status, malote.DataEnvio, malote.Cidade, malote.Numero, malote.Percurso, malote.Lacre, malote.Remetente);
+        var remetente = c.EmailUser(User.Identity.Name);
+        mail.enviaMalote(malote.Status, malote.DataEnvio, malote.Cidade, malote.Numero, malote.Percurso, malote.Lacre, malote.Remetente, remetente);
         return RedirectToAction(nameof(Index));
       }
 
@@ -76,8 +77,8 @@ namespace SicWEB.Controllers {
       return View(malote);
     }
 
-    [Authorize(Policy = "admin")]
     // GET: Malotes/Edit/5
+    [Authorize(Policy = "admin")]
     public async Task<IActionResult> Edit(int? id) {
       if (id == null) {
         return NotFound();
@@ -94,6 +95,7 @@ namespace SicWEB.Controllers {
     // POST: Malotes/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [Authorize(Policy = "admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Numero,Percurso,Lacre,Cidade,Remetente,Status,Atualizacao,DataEnvio,DataRecebido,CidadeSaida,NomeUser")] Malote malote) {
@@ -120,8 +122,8 @@ namespace SicWEB.Controllers {
       return View(malote);
     }
 
-    [Authorize(Policy = "admin")]
     // GET: Malotes/Delete/5
+    [Authorize(Policy = "super")]
     public async Task<IActionResult> Delete(int? id) {
       if (id == null) {
         return NotFound();
@@ -137,6 +139,7 @@ namespace SicWEB.Controllers {
     }
 
     // POST: Malotes/Delete/5
+    [Authorize(Policy = "super")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id) {

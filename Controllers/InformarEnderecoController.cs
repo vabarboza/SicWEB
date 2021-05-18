@@ -92,9 +92,10 @@ namespace SicWEB.Controllers {
     // POST: InformarEndereco/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [Authorize(Policy = "admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [Authorize(Policy = "admin")]
+  
     public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] InformarEndereco informarEndereco) {
       if (id != informarEndereco.Id) {
         return NotFound();
@@ -120,7 +121,7 @@ namespace SicWEB.Controllers {
     }
 
     // GET: InformarEndereco/Delete/5
-    [Authorize(Policy = "admin")]
+    [Authorize(Policy = "super")]
     public async Task<IActionResult> Delete(int? id) {
       if (id == null) {
         return NotFound();
@@ -136,7 +137,7 @@ namespace SicWEB.Controllers {
     }
 
     // POST: InformarEndereco/Delete/5
-    [Authorize(Policy = "admin")]
+    [Authorize(Policy = "super")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id) {

@@ -76,6 +76,7 @@ namespace SicWEB.Controllers {
     }
 
     // GET: ConversaoExecucao/Edit/5
+    [Authorize(Policy = "admin")]
     public async Task<IActionResult> Edit(int? id) {
       if (id == null) {
         return NotFound();
@@ -92,6 +93,7 @@ namespace SicWEB.Controllers {
     // POST: ConversaoExecucao/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [Authorize(Policy = "admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,ValorReal,ValorDescrito,Oab,Data,NomeUser")] ConversaoExecucao conversaoExecucao) {
@@ -120,6 +122,7 @@ namespace SicWEB.Controllers {
     }
 
     // GET: ConversaoExecucao/Delete/5
+    [Authorize(Policy = "super")]
     public async Task<IActionResult> Delete(int? id) {
       if (id == null) {
         return NotFound();
@@ -136,6 +139,7 @@ namespace SicWEB.Controllers {
     }
 
     // POST: ConversaoExecucao/Delete/5
+    [Authorize(Policy = "super")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id) {
