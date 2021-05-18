@@ -115,6 +115,8 @@ namespace SicWEB.Controllers {
             throw;
           }
         }
+        var remetente = c.EmailUser(User.Identity.Name);
+        mail.atualizaMalote(malote.Status, malote.DataEnvio, malote.Cidade, malote.Numero, malote.Percurso, malote.Lacre, malote.Remetente, remetente);
         TempData["mensagemEdit"] = "MSG";
         return RedirectToAction(nameof(Index));
       }
