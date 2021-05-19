@@ -83,7 +83,7 @@ namespace SicWEB {
         app.UseHsts();
       }
 
-      app.UseStatusCodePagesWithRedirects("/Home");
+      app.UseStatusCodePagesWithRedirects("/sic/Home");
       app.UseHttpsRedirection();
       app.UseStaticFiles();
 
