@@ -30,8 +30,7 @@
 </head>
 <body>
   <header>
-    @if (SignInManager.IsSignedIn(User))
-    {
+    @if (SignInManager.IsSignedIn(User)) {
       <!--Navbar -->
       <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-danger-dark">
         <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -58,50 +57,52 @@
               </div>
             </li>
 
+            <!--
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-highlighter"></i> Materiais
-              </a>
-              <div class="dropdown-menu dropdown-dark " aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item">
-                  <i class="fas fa-plus-circle"></i>&nbsp; Solicitação de Materiais
-                </a>
-                <a class="dropdown-item">
-                  <i class="fas fa-list-ul"></i> Listagens de Solicitações
-                </a>
-              </div>
+            <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-highlighter"></i> Materiais
+            </a>
+            <div class="dropdown-menu dropdown-dark " aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item">
+            <i class="fas fa-plus-circle"></i>&nbsp; Solicitação de Materiais
+            </a>
+            <a class="dropdown-item">
+            <i class="fas fa-list-ul"></i> Listagens de Solicitações
+            </a>
+            </div>
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-external-link-square-alt"></i> Externos
-              </a>
-              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item">
-                  <i class="fas fa-external-link-alt"></i> Rastreio Azul
-                </a>
-                <a class="dropdown-item">
-                  <i class="fas fa-external-link-alt"></i> Rastreio Correios
-                </a>
-              </div>
+            <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-external-link-square-alt"></i> Externos
+            </a>
+            <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item">
+            <i class="fas fa-external-link-alt"></i> Rastreio Azul
+            </a>
+            <a class="dropdown-item">
+            <i class="fas fa-external-link-alt"></i> Rastreio Correios
+            </a>
+            </div>
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-chart-line"></i> Gráficos
-              </a>
-              <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item">
-                  <i class="far fa-chart-bar"></i> Gráfico de Correios
-                </a>
-                <a class="dropdown-item">
-                  <i class="far fa-chart-bar"></i> Gráfico de Malotes
-                </a>
-                <a class="dropdown-item">
-                  <i class="far fa-chart-bar"></i> Gráfico de Materiais
-                </a>
-              </div>
+            <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-chart-line"></i> Gráficos
+            </a>
+            <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item">
+            <i class="far fa-chart-bar"></i> Gráfico de Correios
+            </a>
+            <a class="dropdown-item">
+            <i class="far fa-chart-bar"></i> Gráfico de Malotes
+            </a>
+            <a class="dropdown-item">
+            <i class="far fa-chart-bar"></i> Gráfico de Materiais
+            </a>
+            </div>
             </li>
+            -->
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white hvr-underline-reveal" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
