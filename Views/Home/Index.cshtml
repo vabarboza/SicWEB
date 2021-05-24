@@ -260,10 +260,10 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['Citação Carta', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço', 'Informar Órgão', 'Juntada de Termo'],
+          labels: ['Citação Carta', 'Citação Edital', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço', 'Informar Órgão', 'Juntada de Termo'],
           datasets: [{
             label: 'Numero de Envios',
-            data: [@ViewBag.ContarCitacaocarta, @ViewBag.ContarExpedicaoMandado,
+            data: [@ViewBag.ContarCitacaocarta, @ViewBag.ContarCitacaoEdital, @ViewBag.ContarExpedicaoMandado,
                   @ViewBag.ContarFielDepositario, @ViewBag.ContarInformarEndereco,
                   @ViewBag.ContarInformarOrgao, @ViewBag.ContarNotificacaoJuntadaTermoCessao],
             backgroundColor: [
@@ -302,12 +302,12 @@
     new Chart(document.getElementById("horizontalBar"), {
       "type": "horizontalBar",
       "data": {
-        "labels": ['Citação Carta', 'Expedição de Mandado', 'Fiel Depositario', 'Informar Endereço',
+        "labels": ['Citação Carta', 'Citação Edital', 'Expedição de Mandado', 'Expedição de Mandado Citação', 'Fiel Depositario', 'Informar Endereço',
           'Informar Órgão', 'Juntada de Termo', 'Conversao em Execucao', 'Conversao em Execucao - Itaú' ],
         "datasets": [{
           "label": "Envios",
-          "data": [@ViewBag.ContarCitacaocarta, @ViewBag.ContarExpedicaoMandado,
-                  @ViewBag.ContarFielDepositario, @ViewBag.ContarInformarEndereco,
+          "data": [@ViewBag.ContarCitacaocarta,  @ViewBag.ContarCitacaoEdital, @ViewBag.ContarExpedicaoMandado,
+                  @ViewBag.ContarExpedicaoMandadoCitacao, @ViewBag.ContarFielDepositario, @ViewBag.ContarInformarEndereco,
                   @ViewBag.ContarInformarOrgao, @ViewBag.ContarNotificacaoJuntadaTermoCessao,
                   @ViewBag.ContarNotificacaoConversaoExecucao,@ViewBag.ContarNotificacaoConversaoExecucaoItau],
           "fill": false,

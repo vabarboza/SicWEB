@@ -26,6 +26,7 @@ namespace SicWEB.Controllers {
 
       ViewBag.ContarNotificacao = c.ContarNotificacao();
       ViewBag.ContarCitacaocarta = c.ContarNotificacaoCitacao();
+      ViewBag.ContarCitacaoEdital = c.ContarNotificacaoCitacaoEdital();
       ViewBag.ContarExpedicaoMandado = c.ContarNotificacaoExpedicao();
       ViewBag.ContarFielDepositario = c.ContarNotificacaoFiel();
       ViewBag.ContarInformarEndereco = c.ContarNotificacaoInformarEndereco();
@@ -34,6 +35,7 @@ namespace SicWEB.Controllers {
       ViewBag.ContarNotificacaoConversaoExecucao = c.ContarNotificacaoConversaoExecucao();
       ViewBag.ContarNotificacaoConversaoExecucaoItau = c.ContarNotificacaoConversaoExecucaoItau();
       ViewBag.MaloteAtrasado = c.MaloteAtrasado();
+      ViewBag.ContarExpedicaoMandadoCitacao = c.ContarExpedicaoMandadoCitacao();
 
       string nomeUser = c.NomeUser(User.Identity.Name);
       ViewBag.MaloteUser = c.MaloteUsuario(nomeUser);

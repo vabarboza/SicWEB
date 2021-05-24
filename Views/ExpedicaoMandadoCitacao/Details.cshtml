@@ -1,0 +1,109 @@
+﻿@model SicWEB.Models.ExpedicaoMandadoCitacao
+@{
+  Layout = "_Layout2";
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversao Execucao - SicWEB</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="~/css/StyleSheet.css">
+  <style>
+    html {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d-flex justify-content-center">
+    <div id="footer_wrapper">
+      <div id="footer_content" class="text-center" style="font-size:xx-small">
+        Av. João Paulino Vieira Filho, Ed. New Tower Plaza – 12º andar – Bairro: Zona 01<br />
+        CEP 87020-015 – Fones(s): (44) 3033-9291 / (44) 2103-9291
+      </div>
+    </div>
+  </div>
+
+  <TABLE>
+
+    <THEAD>
+      <TR>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+        <TH><br /><img src="~/img/logo.png" class="rounded mx-auto d-block mb-3" style="width: 40%"><hr /></TH>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+      </TR>
+    </THEAD>
+
+    <TBODY>
+      <TR>
+        <TD></TD>
+        <TD>
+          <p class="text-justify font-weight-bold mb-4 mt-3">
+            EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA @Html.DisplayFor(model => model.Vara) DA COMARCA DE
+            @Html.DisplayFor(model => model.Comarca) – ESTADO DE @Html.DisplayFor(model => model.Estado)
+          </p>
+
+          <p class="font-weight-bold mb-5">
+            Autos n.º @Html.DisplayFor(model => model.Autos)
+            <br />
+            Contrato nº @Html.DisplayFor(model => model.Contrato)
+          </p>
+
+          <p class="text-justify mt-3 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>@Html.DisplayFor(model => model.Banco)</strong>, já qualificado nos autos em epígrafe, que move em face
+            de <strong>@Html.DisplayFor(model => model.Reu)</strong>, já também devidamente qualificado, vem, por seu procurador
+            signatário, respeitosamente, à Douta presença de Vossa Excelência, <strong>REQUERER</strong> a <strong>EXPEDIÇÃO DE MANDADO DE CITAÇÃO</strong>
+            no seguinte endereço: <strong>@Html.DisplayFor(model => model.Endereco)</strong>.
+          </p>
+
+          <p class="text-justify mt-3 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Outrossim, requer que todas as intimações dos atos processuais destes autos deem-se na forma prevista nos 
+            artigos 269 e 273 do N.C.P.C., em nome da Dra. CRISTIANE BELINATI GARCIA LOPES, <strong>@Html.DisplayFor(model => model.Oab)</strong>, 
+            independentemente dos demais procuradores constantes nas procurações e substabelecimentos juntados a 
+            estes autos, sob pena de nulidade da intimação, conforme previsto no artigo 280 do N.C.P.C.
+          </p>
+
+          <p class="text-justify mt-3 mb-5">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nestes termos.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Pede e espera deferimento.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Maringá, @Html.DisplayFor(model => model.Data).
+          </p>
+
+          <p class="text-center font-weight-bold mt-5">
+            CRISTIANE BELINATI GARCIA LOPES<br />
+            @Html.DisplayFor(model => model.Oab)
+          </p>
+
+        </TD>
+        <TD></TD>
+      </TR>
+    </TBODY>
+
+    <TFOOT id="table_footer">
+      <TR>
+        <TH><br /><br /><br /></TH>
+        <TH><br /><br /><br /></TH>
+      </TR>
+    </TFOOT>
+
+  </TABLE>
+
+  <script>
+    window.print();
+    window.onafterprint = function () {
+      window.close();
+    }
+  </script>
+
+</body>
+</html>

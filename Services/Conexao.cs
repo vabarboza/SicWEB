@@ -248,6 +248,23 @@ namespace BellinatiCorreio.Views.Home {
     }
 
     //Contador de notificações
+    public int ContarNotificacaoCitacaoEdital() {
+      var count = 0;
+      using (var conexao = new MySqlConnection()) {
+        conexao.ConnectionString = ConexaoDados();
+        conexao.Open();
+
+        using (var comando = new MySqlCommand()) {
+          comando.Connection = conexao;
+          comando.CommandText = string.Format("Select count(*) from citacaoedital");
+          count = (int)(long)comando.ExecuteScalar();
+        }
+      }
+      return count;
+    }
+    
+
+    //Contador de notificações
     public int ContarNotificacaoExpedicao() {
       var count = 0;
       using (var conexao = new MySqlConnection()) {
@@ -262,6 +279,23 @@ namespace BellinatiCorreio.Views.Home {
       }
       return count;
     }
+
+    //Contador de notificações
+    public int ContarExpedicaoMandadoCitacao() {
+      var count = 0;
+      using (var conexao = new MySqlConnection()) {
+        conexao.ConnectionString = ConexaoDados();
+        conexao.Open();
+
+        using (var comando = new MySqlCommand()) {
+          comando.Connection = conexao;
+          comando.CommandText = string.Format("Select count(*) from expedicaomandadocitacao");
+          count = (int)(long)comando.ExecuteScalar();
+        }
+      }
+      return count;
+    }
+    
 
     //Contador de notificações
     public int ContarNotificacaoFiel() {

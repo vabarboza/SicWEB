@@ -1,0 +1,198 @@
+﻿@model SicWEB.Models.CitacaoEdital
+@{
+  Layout = "_Layout2";
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversao Execucao - SicWEB</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="~/css/StyleSheet.css">
+  <style>
+    html {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d-flex justify-content-center">
+    <div id="footer_wrapper">
+      <div id="footer_content" class="text-center" style="font-size:xx-small">
+        Av. João Paulino Vieira Filho, Ed. New Tower Plaza – 12º andar – Bairro: Zona 01<br />
+        CEP 87020-015 – Fones(s): (44) 3033-9291 / (44) 2103-9291
+      </div>
+    </div>
+  </div>
+
+  <TABLE>
+
+    <THEAD>
+      <TR>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+        <TH><br /><img src="~/img/logo.png" class="rounded mx-auto d-block mb-3" style="width: 40%"><hr /></TH>
+        <TH>&emsp;&emsp;&emsp;&emsp;&emsp;</TH>
+      </TR>
+    </THEAD>
+
+    <TBODY>
+      <TR>
+        <TD></TD>
+        <TD>
+          <p class="text-justify font-weight-bold mb-4 mt-3">
+            EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA @Html.DisplayFor(model => model.Vara) DA COMARCA DE
+            @Html.DisplayFor(model => model.Comarca) – ESTADO DE @Html.DisplayFor(model => model.Estado)
+          </p>
+
+          <p class="font-weight-bold mb-5">
+            Autos n.º @Html.DisplayFor(model => model.Autos)
+            <br />
+            Contrato nº @Html.DisplayFor(model => model.Contrato)
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <strong>@Html.DisplayFor(model => model.Banco)</strong>, já qualificada nos autos de Busca e Apreensão em epígrafe, propostos em face
+            de <strong>@Html.DisplayFor(model => model.Reu)</strong>, também já qualificado, vem, por seus procuradores signatários, respeitosamente,
+            perante Vossa Excelência, requerer o que se segue:
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Compulsando os autos, verifica-se que o mandado expedido não fora cumprido, não havendo a
+            citação do Requerido, por não ser localizado nos endereços apontados, porém, houve a apreensão do bem.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Há que se lembrar, contudo, que os endereços foram fornecidos pelo próprio Réu no momento da contratação.
+            Comprometeu-se, inclusive, a mantê-lo atualizado, assim como os telefones, a fim de que a Autora pudesse entrar
+            em contato caso surgisse qualquer problema com o contrato sub judice, mas
+            <strong>não cumpriu com o dever de manter  a Instituição Financeira atualizada</strong> acerca de seus dados, tais como números de telefones e endereço,
+            a fim de que a Autora pudesse entrar em contato caso surgisse qualquer problema com o contrato sub judice.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Então, dada a inadimplência e a ausência de citação do referido, tem restado o Banco credor prejudicado,
+            eis que, embora o veículo encontre-se atualmente em posse do Banco, há que consolidar
+            judicialmente a posse e propriedade do veículo ao credor fiduciário, que até o presente momento
+            permanece tão somente como sendo proprietário fiduciário do bem.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Então, tomando-se por base o art. 256 do Novo CPC, há que se considerar acerca da citação por edital:
+          </p>
+
+          <p class="tab text-justify font-italic">
+            Art. 256. A citação por edital será feita:
+          </p>
+
+          <p class="tab text-justify font-italic">
+            I - quando <strong>desconhecido ou incerto o citando</strong>;
+          </p>
+
+          <p class="tab text-justify font-italic">
+            [...]
+          </p>
+
+          <p class="tab text-justify font-italic">
+            § 3o O réu será considerado em local ignorado ou incerto se
+            <strong>
+              infrutíferas as tentativas de sua localização,
+              inclusive mediante requisição pelo juízo de informações sobre seu endereço nos cadastros de órgãos públicos
+            </strong>
+            ou de concessionárias de serviços públicos.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nesse caso Excelência, não só a Instituição Financeira não mais possui endereços a fim de que seja empreendida
+            novas diligências no intuito de localização do Requerido, mas também este juízo já deferiu pesquisas a fim de
+            se obter novos endereços, sendo que, posteriormente, os endereços encontrados, também já foram diligenciados e
+            infrutífero o resultado.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Há que se considerar que os fatos acima narrados levam à aplicação do texto do art. 256 do Novo CPC supracitado,
+            devendo-se proceder a citação do Requerido por Edital.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Desse modo, é patente as diversas tentativas de localização do Requerido, tendo em vista que o mesmo não
+            foi encontrando nos locais por ele mesmo informado, bem como o oficial de justiça não o encontrou nos endereços
+            diligenciados.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Ainda, encontra-se presentes os requisitos da citação por edital, não existindo impedimento de que a mesma seja
+            realizada na presente ação de busca e apreensão. Ressalte-se ainda que,
+            <u>
+              caso não seja efetuada a citação editalícia,
+              o feito restará paralisado
+            </u>, por não se ter, ainda, completado a relação processual,
+            <u>
+              comprometendo a efetividade
+              da celeridade processual.
+            </u>
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Ante o exposto,<strong> REQUER</strong> a citação por edital do Requerido.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Outrossim, requer que todas as intimações dos atos processuais destes autos sejam efetivadas na
+            forma prevista nos artigos 270 e 272 do Novo C.P.C.(Lei 13.105/2015), na pessoa
+            de Cristiane Belinati Garcia Lopes, <strong>@Html.DisplayFor(model => model.Oab)</strong>, independentemente dos demais procuradores
+            constantes nas procurações e substabelecimentos juntados a estes autos, sob pena de nulidade da intimação,
+            conforme previsto no artigo 280 do Novo C.P.C.
+          </p>
+
+          <p class="text-justify mt-3 mb-4">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Nestes termos.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Pede e espera deferimento.<br />
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            Maringá, @Html.DisplayFor(model => model.Data).
+          </p>
+
+          <p class="text-center font-weight-bold mt-5">
+            CRISTIANE BELINATI GARCIA LOPES<br />
+            @Html.DisplayFor(model => model.Oab)
+          </p>
+
+        </TD>
+        <TD></TD>
+      </TR>
+    </TBODY>
+
+    <TFOOT id="table_footer">
+      <TR>
+        <TH><br /><br /><br /></TH>
+        <TH><br /><br /><br /></TH>
+      </TR>
+    </TFOOT>
+
+  </TABLE>
+
+  <script>
+    window.print();
+    window.onafterprint = function () {
+      window.close();
+    }
+  </script>
+
+</body>
+</html>

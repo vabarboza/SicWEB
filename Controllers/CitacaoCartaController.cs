@@ -94,6 +94,7 @@ namespace SicWEB.Controllers {
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Policy = "admin")]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] CitacaoCarta citacaoCarta) {
       if (id != citacaoCarta.Id) {
         return NotFound();
