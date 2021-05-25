@@ -95,7 +95,7 @@ namespace SicWEB.Controllers {
     [Authorize(Policy = "admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-  
+
     public async Task<IActionResult> Edit(int id, [Bind("Id,Autos,Contrato,Vara,Comarca,Estado,Banco,Reu,Endereco,Oab,Data,NomeUser")] InformarEndereco informarEndereco) {
       if (id != informarEndereco.Id) {
         return NotFound();

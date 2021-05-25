@@ -75,7 +75,7 @@ namespace SicWEB.Controllers {
     }
 
 
-    
+
     // GET: ExpedicaoNovoMandado/Edit/5
     [Authorize(Policy = "admin")]
     public async Task<IActionResult> Edit(int? id) {

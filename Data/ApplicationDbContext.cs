@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SicWEB.Models;
 
 namespace SicWEB.Data {
   public class ApplicationDbContext : IdentityDbContext {

@@ -262,7 +262,7 @@ namespace BellinatiCorreio.Views.Home {
       }
       return count;
     }
-    
+
 
     //Contador de notificações
     public int ContarNotificacaoExpedicao() {
@@ -295,7 +295,7 @@ namespace BellinatiCorreio.Views.Home {
       }
       return count;
     }
-    
+
 
     //Contador de notificações
     public int ContarNotificacaoFiel() {

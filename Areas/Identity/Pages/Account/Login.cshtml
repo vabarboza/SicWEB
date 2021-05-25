@@ -29,27 +29,11 @@
   </script>
 }
 
-<div id="mdb-preloader" class="flex-center">
-  <div class="preloader-wrapper active">
-    <div class="spinner-layer spinner-red-only">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
-      </div>
-      <div class="gap-patch">
-        <div class="circle"></div>
-      </div>
-      <div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div style="height: 95vh">
   <div class="flex-center flex-column">
 
     <div class="p-4 bd-highlight">
-      <div class="container bg-white rounded shadow-md animated fadeIn slow p-3" style=" width: 400px">
+      <div class="container bg-white rounded shadow-md animated fadeIn p-3" style=" width: 400px">
 
 
         <img src="~/img/toponew.png" class="responsive-img rounded mx-auto d-block" style="width: 150px">
@@ -94,13 +78,6 @@
 
 
 @section Scripts {
-
-  <script>
-    $(window).on('load', function () {
-      $('#mdb-preloader').delay(1000).fadeOut(300);
-    });
-  </script>
-
   <script>
     function validate(evt) {
       var theEvent = evt || window.event;

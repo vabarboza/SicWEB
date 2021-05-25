@@ -62,7 +62,7 @@ namespace SicWEB {
         options.AccessDeniedPath = "/Identity/Account/AccessDenied";
         options.Cookie.Name = "SicWeb";
         options.Cookie.HttpOnly = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.LoginPath = "/Identity/Account/Login";
         options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
         options.SlidingExpiration = true;
