@@ -1,0 +1,113 @@
+﻿@model SicWEB.Models.Correio
+
+@{
+  ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid border rounded bg-branco">
+
+  <div class="container-fluid pb-3">
+
+    <h5 class="font-weight-bold pt-3 pb-1">Edição de Correio</h5>
+
+    <hr />
+    <form asp-action="Edit">
+      <div class="form-row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="col-md-3 mb-3">
+          <label class="font-weight-bolder" asp-for="Status">Status do Envio</label>
+          <select class="browser-default custom-select" asp-for="Status" id="selectstatus" required>
+            <option></option>
+            <option value="Aprovado">Aprovado</option>
+            <option value="Atrasado">Atrasado</option>
+            <option value="Cadastrado">Cadastrado</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Recebido">Recebido</option>
+          </select>
+          <div class="invalid-feedback">
+            Por favor, escolha uma opção válida!.
+          </div>
+          <div class="valid-feedback">
+            Tudo certo neste campo.
+          </div>
+          <small class="text-muted">Selecione o status de envio do correio</small>
+        </div>
+
+        <div class="ml-1">
+          <dl class="row">
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.DataEnvio)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.DataEnvio)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Tipo)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Destinatario)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Destinatario)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Cidade)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Cidade)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Remetente)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Remetente)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Setor)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Setor)
+            </dd>
+            <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => model.Atualizacao)
+            </dt>
+            <dd class="col-sm-10">
+              @Html.DisplayFor(model => model.Atualizacao)
+            </dd>
+          </dl>
+        </div>
+
+        <div class="form-row">
+
+          <input type="hidden" asp-for="Tipo" class="form-control" readonly />
+          <input type="hidden" asp-for="Remetente" class="form-control" readonly />
+          <input type="hidden" asp-for="Setor" class="form-control" readonly />
+          <input type="hidden" asp-for="Destinatario" class="form-control" readonly />
+          <input type="hidden" asp-for="DataEnvio" class="form-control" readonly />
+          <input type="hidden" asp-for="Cidade" class="form-control" readonly />
+          <input type="hidden" asp-for="Atualizacao" class="form-control" value="@ViewBag.NomeUser" />
+
+        </div>
+
+        <div class="form-group ml-1">
+          <button type="submit" class="btn btn-sm btn-redondo btn-dark-green">Salvar</button> |
+          <a class="btn btn-sm btn-redondo btn-outline-elegant" asp-action="Index"><i class="fas fa-undo-alt"></i> Voltar para a Lista</a>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>
+

@@ -39,8 +39,7 @@ namespace SicWEB {
         "<li><strong> Numero do lacre:</strong> " + lacre + " </li>" +
         "<li><strong> Responsavel pelo envio:</strong > " + resp + " </li></ul>" +
         "<p> Para maiores informações entrar em contato com o remetente.</p>" +
-        "<p> Favor não responder este E-Mail.</p>" +
-        "<p><img src=" + logo + " /></p>";
+        "<p> Favor não responder este E-Mail.</p>";
       mail.IsBodyHtml = true;
       mail.Priority = MailPriority.High;
 
@@ -94,8 +93,7 @@ namespace SicWEB {
         "</ul>" +
         "<p> &nbsp;</p>" +
         "<p><em> Para maiores informações entrar em contato com o remetente.</em></p>" +
-        "<p><strong> Favor não responder este E-Mail.</strong></p>" +
-        "<p><img src = " + logo + " /></p> ";
+        "<p><strong> Favor não responder este E-Mail.</strong></p>";
 
       mail.IsBodyHtml = true;
       mail.Priority = MailPriority.High;

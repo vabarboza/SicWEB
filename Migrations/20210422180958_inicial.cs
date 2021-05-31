@@ -36,7 +36,8 @@ namespace SicWEB.Migrations {
             LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
             AccessFailedCount = table.Column<int>(type: "int", nullable: false),
             NomeUser = table.Column<string>(type: "varchar(80) CHARACTER SET utf8mb4", nullable: false, defaultValue: "Sem Nome"),
-            FilialUser = table.Column<string>(type: "varchar(80) CHARACTER SET utf8mb4", nullable: false, defaultValue: "Sem Cidade")
+            FilialUser = table.Column<string>(type: "varchar(80) CHARACTER SET utf8mb4", nullable: false, defaultValue: "Sem Cidade"),
+            SetorUser = table.Column<string>(type: "varchar(80) CHARACTER SET utf8mb4", nullable: false, defaultValue: "Sem Setor")
           },
           constraints: table => {
             table.PrimaryKey("PK_AspNetUsers", x => x.Id);

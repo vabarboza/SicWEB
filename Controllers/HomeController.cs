@@ -19,6 +19,12 @@ namespace SicWEB.Controllers {
     }
 
     public IActionResult Index() {
+      ViewBag.TotalCorreio = c.ContarCorreio();
+      ViewBag.TotalAzul = c.ContarAzul();
+      ViewBag.TotalAR = c.ContarAR();
+      ViewBag.TotalCarta = c.ContarCarta();
+      ViewBag.TotalSedex = c.ContarSedex();
+
       ViewBag.TotalMalote = c.ContarMalote();
       ViewBag.TotalMaringa = c.ContarMaringa();
       ViewBag.TotalCuritiba = c.ContarCuritiba();

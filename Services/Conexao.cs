@@ -215,6 +215,22 @@ namespace BellinatiCorreio.Views.Home {
       return nome;
     }
 
+    //Busca Cidade do usuario pelo CPF
+    public string SetorUser(string nome) {
+      using (var conexao = new MySqlConnection()) {
+
+        conexao.ConnectionString = ConexaoDados();
+        conexao.Open();
+
+        using (var comando = new MySqlCommand()) {
+          comando.Connection = conexao;
+          comando.CommandText = string.Format("select setor_user('" + nome + "')");
+          nome = (string)comando.ExecuteScalar();
+        }
+      }
+      return nome;
+    }
+
     //Contador de notificações
     public int ContarNotificacao() {
       int count;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SicWEB.Models;
 
 namespace SicWEB.Data {
   public class ApplicationDbContext : IdentityDbContext {
@@ -17,5 +18,6 @@ namespace SicWEB.Data {
     public DbSet<SicWEB.Models.ConversaoExecucaoItau> ConversaoExecucaoItau { get; set; }
     public DbSet<SicWEB.Models.CitacaoEdital> CitacaoEdital { get; set; }
     public DbSet<SicWEB.Models.ExpedicaoMandadoCitacao> ExpedicaoMandadoCitacao { get; set; }
+    public DbSet<SicWEB.Models.Correio> Correio { get; set; }
   }
 }

@@ -8,7 +8,7 @@
 
   <div class="container-fluid pb-3">
 
-    <h5 class="font-weight-bold pt-3 pb-1">Cadastro de Malote</h5>
+    <h5 class="font-weight-bold pt-3 pb-1">Edição de Malote</h5>
 
     <hr />
     <form asp-action="Edit">
@@ -17,7 +17,7 @@
         <input type="hidden" asp-for="Id" />
 
         <div class="col-md-3 mb-3">
-          <label asp-for="Status">Status do Envio</label>
+          <label class="font-weight-bolder" asp-for="Status">Status do Envio</label>
           <select class="browser-default custom-select" asp-for="Status" id="selectstatus" required>
             <option></option>
             <option value="Aprovado">Aprovado</option>
@@ -35,8 +35,7 @@
           <small class="text-muted">Selecione o tipo de envio do Correio</small>
         </div>
 
-        <div>
-          <hr />
+        <div class="ml-1">
           <dl class="row">
             <dt class="col-sm-2">
               @Html.DisplayNameFor(model => model.Status)
@@ -122,7 +121,7 @@
       <input asp-for="CidadeSaida" class="form-control" type="hidden" />
       <input asp-for="NomeUser" class="form-control" type="hidden" />
 
-      <div class="form-group">
+      <div class="form-group ml-n2">
         <button type="submit" class="btn btn-sm btn-redondo btn-dark-green">Salvar</button> |
         <a class="btn btn-sm btn-redondo btn-outline-elegant" asp-action="Index"><i class="fas fa-undo-alt"></i> Voltar para a Lista</a>
       </div>
